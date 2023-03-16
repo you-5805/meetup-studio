@@ -1,5 +1,4 @@
 import { useShareScreen } from '@/hooks/useShareScreen';
-import { useRef, useState } from 'react';
 
 export default function Page() {
   const { videoRef, isSharing, startSharing, stopSharing } = useShareScreen();
