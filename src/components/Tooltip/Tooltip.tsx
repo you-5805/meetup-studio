@@ -3,9 +3,10 @@ import type { ComponentProps, PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{
   label: string;
+  arrow?: boolean;
 }>;
 
-export const Tooltip = ({ label, children }: Props) => {
+export const Tooltip = ({ label, arrow = false, children }: Props) => {
   return (
     <RadixTooltip.Root delayDuration={0}>
       <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
@@ -13,6 +14,7 @@ export const Tooltip = ({ label, children }: Props) => {
       <RadixTooltip.Portal>
         <RadixTooltip.Content className='mb-3 rounded-md bg-black bg-opacity-80 px-2 py-1.5 text-white'>
           {label}
+          {arrow && <RadixTooltip.Arrow />}
         </RadixTooltip.Content>
       </RadixTooltip.Portal>
     </RadixTooltip.Root>

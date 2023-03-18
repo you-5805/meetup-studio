@@ -1,14 +1,24 @@
+import { CommentCard } from './CommentCard/CommentCard';
 import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { useDisplayScreen } from '@/hooks/useDisplayScreen';
-import { PlayCircleIcon, NoSymbolIcon } from '@heroicons/react/24/outline';
+import { NoSymbolIcon, PlayCircleIcon } from '@heroicons/react/24/outline';
 
 export default function Page() {
   const { videoRef, isDisplaying, startDisplaying, stopDisplaying } = useDisplayScreen();
 
   return (
     <>
-      <div className='item-center flex h-[calc(100vh-64px)] justify-center overflow-hidden rounded-md bg-gray-100 p-8'>
-        <video ref={videoRef} autoPlay playsInline className='aspect-video w-full self-center' />
+      <div className='grid h-[calc(100vh-64px)] grid-cols-3 gap-3 bg-gray-100 p-2 lg:grid-cols-4'>
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center rounded-md bg-black shadow-lg lg:col-span-3'
+        />
+
+        <div className='col-span-1'>
+          <CommentCard />
+        </div>
       </div>
 
       <div className='absolute bottom-0 flex h-16 w-full items-center justify-center bg-gray-800 py-4 font-bold text-white'>
