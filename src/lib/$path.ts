@@ -10,15 +10,20 @@ export const pagesPath = {
     },
     $url: (url?: { hash?: string }) => ({ pathname: '/app' as const, hash: url?.hash })
   },
+  "terms": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/terms' as const, hash: url?.hash })
+  },
   $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
 }
 
 export type PagesPath = typeof pagesPath
 
 export const staticPath = {
+  _DS_Store: '/.DS_Store',
   _gitkeep: '/.gitkeep',
   favicon_ico: '/favicon.ico',
   img: {
+    cafe_png: '/img/cafe.png',
     github_svg: '/img/github.svg',
     google_svg: '/img/google.svg',
     icon_svg: '/img/icon.svg',

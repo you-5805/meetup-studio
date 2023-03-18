@@ -1,19 +1,18 @@
 import { SignInModal } from './SignInModal/SignInModal';
-import { pagesPath } from '@/lib/$path';
-import { Link } from '@/components/Link/Link';
 import { useUser } from '@/hooks/useUser';
-import { auth } from '@/lib/firebase';
-import logo from 'public/img/logo.png';
-import { signOut } from 'firebase/auth';
-import { useState } from 'react';
+import { pagesPath } from '@/lib/$path';
+import { isSignInModalOpenedState } from '@/states/global';
+import cafe from 'public/img/cafe.png';
+import { Layout } from '@/components/Layout/Layout';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 import Image from 'next/image';
 
 export default function Page() {
   const router = useRouter();
   const navigateToApp = () => router.push(pagesPath.app.$url().pathname);
   const { user } = useUser();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useRecoilState(isSignInModalOpenedState);
   const signInAndPrepareEvent = () => {
     if (!user) {
       setIsOpen(true);
@@ -23,37 +22,19 @@ export default function Page() {
   };
 
   return (
-    <>
-      <header className='flex h-[104px] items-start justify-between p-8'>
-        <Link href={pagesPath.$url()}>
-          <span className='relative inline-block h-[38px] w-[248px]'>
-            <Image src={logo} fill alt='Meetup Studio' />
-          </span>
-        </Link>
+    <Layout>
+      <div className='px-8 py-10 md:py-20'>
+        <div className='mx-auto flex max-w-6xl flex-col items-center gap-8'>
+          <div className='mx-auto grid grid-cols-1 gap-10 xl:grid-cols-2'>
+            <h1 className='col-span-1 flex flex-col items-center justify-center text-2xl font-bold leading-normal tracking-tight md:text-4xl'>
+              <span className='whitespace-nowrap leading-normal'>オフラインイベントを</span>
+              <span className='whitespace-nowrap leading-normal'>もっとインタラクティブに</span>
+            </h1>
+            <div className='col-span-1'>
+              <Image src={cafe} alt='' />
+            </div>
+          </div>
 
-        {user === null ? (
-          <button
-            onClick={signInAndPrepareEvent}
-            className='animate-appear-slow rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400'
-          >
-            サインイン
-          </button>
-        ) : user !== undefined ? (
-          <button
-            type='button'
-            className='animate-appear-slow rounded border border-orange-500 bg-white py-2 px-4 font-bold text-orange-500 transition-colors hover:bg-gray-50 hover:text-orange-400'
-            onClick={() => signOut(auth)}
-          >
-            サインアウト
-          </button>
-        ) : null}
-      </header>
-      <div className='px-8 py-20'>
-        <div className='mx-auto flex max-w-6xl flex-col items-start gap-8'>
-          <h1 className='text-5xl font-bold leading-normal tracking-tight'>
-            <span className='whitespace-nowrap'>オフラインイベントを</span>
-            <span className='whitespace-nowrap'>もっとインタラクティブに</span>
-          </h1>
           <button
             onClick={signInAndPrepareEvent}
             className='animate-appear-slow rounded bg-orange-500 py-4 px-6 text-xl font-bold text-white transition-colors hover:bg-orange-400'
@@ -63,6 +44,6 @@ export default function Page() {
         </div>
       </div>
       <SignInModal isOpen={isOpen} setIsOpen={setIsOpen} navigateToApp={navigateToApp} />
-    </>
+    </Layout>
   );
 }
