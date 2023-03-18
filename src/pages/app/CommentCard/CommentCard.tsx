@@ -27,7 +27,14 @@ export const CommentCard = () => {
   };
 
   const onClickScrollToBottomButton = () => {
+    const card = commentCardRef.current;
+    if (!card) return;
+
+    // scroll-behavior: smooth; を解除して一番下までスクロール
+    card.style.scrollBehavior = 'unset';
     scrollToBottom();
+    card.style.scrollBehavior = 'smooth';
+
     setShowScrollToBottomButton(false);
     setShouldAutoScroll(true);
   };
@@ -67,11 +74,10 @@ export const CommentCard = () => {
     };
   });
 
+  // shouldAutoScroll が false になったとき、0.5s で debounce してボタンを表示
   useEffect(() => {
-    if (shouldAutoScroll) setShowScrollToBottomButton(false);
     const timer = setTimeout(() => {
-      if (shouldAutoScroll) return;
-      setShowScrollToBottomButton(true);
+      setShowScrollToBottomButton(!shouldAutoScroll);
     }, 500);
 
     return () => {
@@ -106,7 +112,7 @@ export const CommentCard = () => {
           className='absolute bottom-4 left-[calc(10%)] mx-auto flex h-10 w-4/5 items-center justify-center gap-4 rounded-xl bg-gray-200 bg-opacity-40 shadow-lg backdrop-blur-sm backdrop-filter'
           onClick={onClickScrollToBottomButton}
         >
-          <span>一番下までスクロール</span>
+          <span className='text-sm text-gray-600'>一番下までスクロール</span>
           <ArrowDownIcon className='h-3 w-3' />
         </button>
       )}
