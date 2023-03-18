@@ -3,9 +3,11 @@ import { pagesPath } from '@/lib/$path';
 import { Link } from '@/components/Link/Link';
 import { useUser } from '@/hooks/useUser';
 import { auth } from '@/lib/firebase';
+import logo from 'public/img/logo.png';
 import { signOut } from 'firebase/auth';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function Page() {
   const router = useRouter();
@@ -22,22 +24,24 @@ export default function Page() {
 
   return (
     <>
-      <header className='flex h-[104px] items-center justify-between p-8'>
-        <p className='font-mono text-2xl font-bold'>
-          <Link href={pagesPath.$url()}>Meetup Studio</Link>
-        </p>
+      <header className='flex h-[104px] items-start justify-between p-8'>
+        <Link href={pagesPath.$url()}>
+          <span className='relative inline-block h-[38px] w-[248px]'>
+            <Image src={logo} fill alt='Meetup Studio' />
+          </span>
+        </Link>
 
         {user === null ? (
           <button
             onClick={signInAndPrepareEvent}
-            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400'
+            className='animate-appear-slow rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400'
           >
             サインイン
           </button>
         ) : user !== undefined ? (
           <button
             type='button'
-            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400'
+            className='animate-appear-slow rounded border border-orange-500 bg-white py-2 px-4 font-bold text-orange-500 transition-colors hover:bg-gray-50 hover:text-orange-400'
             onClick={() => signOut(auth)}
           >
             サインアウト
@@ -52,9 +56,9 @@ export default function Page() {
           </h1>
           <button
             onClick={signInAndPrepareEvent}
-            className='rounded bg-orange-500 py-4 px-6 text-xl font-bold text-white transition-colors hover:bg-orange-400'
+            className='animate-appear-slow rounded bg-orange-500 py-4 px-6 text-xl font-bold text-white transition-colors hover:bg-orange-400'
           >
-            サインインしてイベントを準備
+            {user === null ? 'サインインしてイベントを準備' : 'イベントを準備する'}
           </button>
         </div>
       </div>

@@ -17,9 +17,12 @@ export type PagesPath = typeof pagesPath
 
 export const staticPath = {
   _gitkeep: '/.gitkeep',
+  favicon_ico: '/favicon.ico',
   img: {
     github_svg: '/img/github.svg',
-    google_svg: '/img/google.svg'
+    google_svg: '/img/google.svg',
+    icon_svg: '/img/icon.svg',
+    logo_png: '/img/logo.png'
   }
 } as const
 

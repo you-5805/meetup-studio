@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Meetup Studio</title>
+        <meta content='width=device-width, initial-scale=1' name='viewport' />
       </Head>
       <TooltipProvider>
         <Component {...pageProps} />

@@ -5,7 +5,11 @@ import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { useDisplayScreen } from '@/hooks/useDisplayScreen';
 import { useUser } from '@/hooks/useUser';
 import { cn } from '@/lib/cn';
+import { pagesPath } from '@/lib/$path';
+import logo from 'public/img/logo.png';
 import { NoSymbolIcon, TvIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export const Studio = () => {
   useUser({ required: true });
@@ -36,7 +40,15 @@ export const Studio = () => {
         <QrImage />
       </div>
 
-      <div className='absolute bottom-0 flex h-14 w-full items-center justify-center gap-8 bg-gray-800 font-bold text-white'>
+      <div className='absolute bottom-0 flex h-14 w-full items-center justify-center gap-8 bg-gray-800'>
+        <div className='absolute top-4 left-4'>
+          <Link href={pagesPath.$url()}>
+            <span className='relative inline-block h-[25px] w-[160px]'>
+              <Image src={logo} fill alt='Meetup Studio' />
+            </span>
+          </Link>
+        </div>
+
         {isDisplaying ? (
           <Tooltip label='画面共有を停止'>
             <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
