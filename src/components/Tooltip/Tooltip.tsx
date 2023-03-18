@@ -7,7 +7,7 @@ type Props = PropsWithChildren<{
 
 export const Tooltip = ({ label, children }: Props) => {
   return (
-    <RadixTooltip.Root delayDuration={0} defaultOpen>
+    <RadixTooltip.Root delayDuration={0}>
       <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
 
       <RadixTooltip.Portal>
