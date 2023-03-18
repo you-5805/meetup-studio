@@ -1,8 +1,8 @@
 import * as RadixTooltip from '@radix-ui/react-tooltip';
-import type { ComponentProps, PropsWithChildren } from 'react';
+import type { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
 type Props = PropsWithChildren<{
-  label: string;
+  label: ReactNode;
   arrow?: boolean;
 }>;
 

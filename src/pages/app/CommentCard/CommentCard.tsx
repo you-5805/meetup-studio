@@ -89,7 +89,7 @@ export const CommentCard = () => {
     <div className='relative'>
       <div
         ref={commentCardRef}
-        className='relative flex h-[calc(100vh-80px)] flex-col gap-4 overflow-auto scroll-smooth rounded-lg bg-white p-4 shadow-lg'
+        className='relative flex h-[calc(100vh-72px)] flex-col gap-4 overflow-auto scroll-smooth rounded-lg bg-white p-4 shadow-lg'
       >
         {comments.map(({ id, comment, commentedAt, username, img }) => (
           <div key={id} className='flex items-center justify-between'>
