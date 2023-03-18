@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 
-export const useShareScreen = () => {
+export const useDisplayScreen = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [streamState, setStreamState] = useState<MediaStream | null>(null);
-  const isSharing = streamState !== null;
+  const isDisplaying = streamState !== null;
 
-  const startSharing = () => {
+  const startDisplaying = () => {
     navigator.mediaDevices.getDisplayMedia({ video: true }).then((stream) => {
       setStreamState(stream);
       const video = videoRef.current;
@@ -19,7 +19,7 @@ export const useShareScreen = () => {
     });
   };
 
-  const stopSharing = () => {
+  const stopDisplaying = () => {
     if (!streamState) return;
 
     streamState.getTracks().forEach((track) => track.stop());
@@ -31,8 +31,8 @@ export const useShareScreen = () => {
 
   return {
     videoRef,
-    isSharing,
-    startSharing,
-    stopSharing,
+    isDisplaying,
+    startDisplaying,
+    stopDisplaying,
   };
 };
