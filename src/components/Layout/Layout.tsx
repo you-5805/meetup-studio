@@ -1,13 +1,14 @@
+import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
 import { pagesPath } from '@/lib/$path';
 import { auth } from '@/lib/firebase';
 import logo from 'public/img/logo.png';
 import { useUser } from '@/hooks/useUser';
-import { isSignInModalOpenedState } from '@/states/global';
+import { isScreenLoadingState, isSignInModalOpenedState } from '@/states/global';
 import { SignInModal } from '@/pages/SignInModal/SignInModal';
 import Image from 'next/image';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { useRecoilCallback } from 'recoil';
+import { useRecoilCallback, useRecoilValue } from 'recoil';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -32,6 +33,9 @@ export const Layout = ({ children }: Props) => {
       navigateToApp();
     }
   };
+
+  const isScreenLoading = useRecoilValue(isScreenLoadingState);
+  if (isScreenLoading) return <LoadingScreen />;
 
   return (
     <>
@@ -59,7 +63,7 @@ export const Layout = ({ children }: Props) => {
           </button>
         ) : null}
       </header>
-      <main className='min-h-screen'>{children}</main>
+      <main className='min-h-[calc(100vh-200px)]'>{children}</main>
       <footer className='flex flex-col items-center gap-4 bg-gray-200 py-10'>
         <div className='flex items-center justify-center gap-8'>
           <Link href={pagesPath.terms.$url()}>

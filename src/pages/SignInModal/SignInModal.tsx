@@ -1,13 +1,13 @@
 import { auth, firestore } from '@/lib/firebase';
 import { pagesPath, staticPath } from '@/lib/$path';
-import { isSignInModalOpenedState } from '@/states/global';
+import { isScreenLoadingState, isSignInModalOpenedState } from '@/states/global';
 import Link from 'next/link';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Image from 'next/image';
 import { setDoc, doc } from 'firebase/firestore';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import type { AuthProvider } from 'firebase/auth';
 
 const github = new GithubAuthProvider();
@@ -20,9 +20,12 @@ type Props = {
 export const SignInModal = ({ navigateToApp }: Props) => {
   const [isOpen, setIsOpen] = useRecoilState(isSignInModalOpenedState);
 
+  const setLoading = useSetRecoilState(isScreenLoadingState);
+
   const signIn = async (provider: AuthProvider) => {
     try {
       const { user } = await signInWithPopup(auth, provider);
+      setLoading(true);
       await setDoc(doc(firestore, 'users', user.uid), {
         uid: user.uid,
         name: user.displayName,
@@ -46,6 +49,7 @@ export const SignInModal = ({ navigateToApp }: Props) => {
       alert('エラーが発生しました。');
     } finally {
       setIsOpen(false);
+      setLoading(false);
     }
   };
 
