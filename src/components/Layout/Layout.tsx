@@ -64,7 +64,7 @@ export const Layout = ({ children }: Props) => {
         ) : null}
       </header>
       <main className='min-h-[calc(100vh-200px)]'>{children}</main>
-      <footer className='flex flex-col items-center gap-4 bg-gray-200 py-10'>
+      <footer className='flex flex-col items-center gap-4 bg-gray-200 pt-8 pb-20'>
         <div className='flex items-center justify-center gap-8'>
           <Link href={pagesPath.terms.$url()}>
             <span className='hover:text-gray-600 hover:underline'>利用規約</span>
@@ -79,12 +79,14 @@ export const Layout = ({ children }: Props) => {
           </a>
         </div>
 
-        <p>
-          <a href='https://www.freepik.com/free-vector/coffee-shop-concept-illustration_15588818.htm#query=meetup&position=8&from_view=search&track=sph'>
-            Image by storyset
-          </a>
-          on Freepik
-        </p>
+        {router.pathname === '/' && (
+          <p>
+            <a href='https://www.freepik.com/free-vector/coffee-shop-concept-illustration_15588818.htm#query=meetup&position=8&from_view=search&track=sph'>
+              Image by storyset
+            </a>
+            on Freepik
+          </p>
+        )}
       </footer>
 
       <SignInModal navigateToApp={navigateToApp} />

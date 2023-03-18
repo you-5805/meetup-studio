@@ -42,7 +42,7 @@ export default function Page() {
         <title>イベントの作成 | Meetup Studio</title>
       </Head>
       <Layout>
-        <div className='sticky inset-0 flex min-h-screen items-center justify-center bg-gray-100 p-4'>
+        <div className='flex min-h-[calc(100vh-200px)] items-center justify-center bg-gray-100 p-4'>
           <div className='mx-auto w-80 rounded-lg bg-white p-4 shadow-lg'>
             <form onSubmit={onSubmit} className='flex flex-col gap-8'>
               <h1 className='text-center text-xl font-bold'>イベントの作成</h1>
