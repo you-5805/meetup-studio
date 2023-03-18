@@ -1,25 +1,12 @@
 import { CommentCard } from './CommentCard/CommentCard';
+import { CopyLinkButton } from './CopyLinkButton/CopyLinkButton';
+import { QrImage } from './QrImage/QrImage';
 import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { useDisplayScreen } from '@/hooks/useDisplayScreen';
-import { cn } from '@/lib/cn';
-import { useQrUrl } from '@/hooks/useQrUrl';
-import Image from 'next/image';
-import { NoSymbolIcon, ShareIcon, TvIcon, CheckIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { NoSymbolIcon, TvIcon } from '@heroicons/react/24/outline';
 
 export default function Page() {
   const { videoRef, isDisplaying, startDisplaying, stopDisplaying } = useDisplayScreen();
-  const [isQrMinimized, setIsQrMinimized] = useState(false);
-  const toggleQrSize = () => setIsQrMinimized((prev) => !prev);
-  const buttonLabel = isQrMinimized ? '拡大' : '縮小';
-  const [hasCopied, setHasCopied] = useState(false);
-  const copyUrl = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setHasCopied(true);
-    setTimeout(() => setHasCopied(false), 500);
-  };
-
-  const qrUrl = useQrUrl();
 
   return (
     <>
@@ -35,25 +22,7 @@ export default function Page() {
           <CommentCard />
         </div>
 
-        {qrUrl !== null && (
-          <div className='absolute left-4 bottom-4 overflow-hidden rounded-2xl shadow-2xl'>
-            <button
-              type='button'
-              className={cn('group relative block', {
-                'h-20 w-20': isQrMinimized,
-                'h-60 w-60': !isQrMinimized,
-              })}
-              onClick={toggleQrSize}
-              aria-label={`QRコードを${buttonLabel}`}
-            >
-              <Image src={qrUrl} fill alt='この部屋へのQRコード' className='scale-110' />
-
-              <span className='absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-black bg-opacity-60 group-hover:flex'>
-                <span className='text-white'>{isQrMinimized ? '拡大' : '縮小'}</span>
-              </span>
-            </button>
-          </div>
-        )}
+        <QrImage />
       </div>
 
       <div className='absolute bottom-0 flex h-14 w-full items-center justify-center gap-8 bg-gray-800 font-bold text-white'>
@@ -72,13 +41,7 @@ export default function Page() {
         )}
 
         <Tooltip label='この部屋のURLをコピー'>
-          <button type='button' aria-label='この部屋のURLをコピー' onClick={copyUrl}>
-            {hasCopied ? (
-              <CheckIcon className='h-10 w-10 hover:opacity-80' />
-            ) : (
-              <ShareIcon color='white' className='h-10 w-10 hover:opacity-80' />
-            )}
-          </button>
+          <CopyLinkButton />
         </Tooltip>
       </div>
     </>
