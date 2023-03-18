@@ -1,3 +1,5 @@
+'use client';
+
 import { CommentCard } from './CommentCard/CommentCard';
 import { CopyLinkButton } from './CopyLinkButton/CopyLinkButton';
 import { QrImage } from './QrImage/QrImage';

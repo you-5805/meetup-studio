@@ -31,4 +31,4 @@ export const commentsMock = [
   },
 ];
 
-export type Comment = (typeof comments)[number] & { id: string };
+export type Comment = (typeof commentsMock)[number] & { id: string };

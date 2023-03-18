@@ -2,10 +2,12 @@
  * @type {import('next').NextConfig}
  */
 module.exports = {
-  pageExtensions: ['page.tsx', 'handler.ts'],
   swcMinify: true,
   output: 'standalone',
   images: {
     domains: ['pbs.twimg.com'],
+  },
+  experimental: {
+    appDir: true,
   },
 };
