@@ -116,6 +116,13 @@ export const CommentCard = () => {
           <ArrowDownIcon className='h-3 w-3' />
         </button>
       )}
+
+      {/* TODO impl */}
+      {/* <button
+        type='button'
+        className='absolute top-0 -left-2 h-full w-4 bg-gray-300 opacity-40'
+        aria-label='コメント欄を最小化'
+      /> */}
     </div>
   );
 };

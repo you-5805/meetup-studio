@@ -1,29 +1,29 @@
 'use client';
 
 import { useUser } from '@/hooks/useUser';
-import { pagesPath } from '@/lib/$path';
-import { useEffect, useState } from 'react';
+import { firestore } from '@/lib/firebase';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { doc, setDoc } from 'firebase/firestore';
+import { nanoid } from 'nanoid';
 import type { FormEventHandler } from 'react';
 
 export default function Page() {
   const router = useRouter();
 
-  const { user } = useUser();
+  const { user } = useUser({ required: true });
 
   const [roomName, setRoomName] = useState<string>('');
 
   const onSubmit = (async (e) => {
     e.preventDefault();
+    if (!user) return;
+
+    const roomId = nanoid();
+
+    await setDoc(doc(firestore, 'rooms', roomId), { id: roomId, name: roomName, owner: user.uid });
+    router.push(`/app/room/${roomId}`);
   }) satisfies FormEventHandler;
-
-  useEffect(() => {
-    if (user === null) {
-      router.push(pagesPath.$url().pathname);
-    }
-  }, [router, user]);
-
-  if (!user) return null;
 
   return (
     <div className='sticky inset-0 flex min-h-screen items-center justify-center bg-gray-100 p-4'>

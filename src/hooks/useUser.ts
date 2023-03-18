@@ -1,15 +1,31 @@
 import { auth } from '@/lib/firebase';
+import { pagesPath } from '@/lib/$path';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type { User } from 'firebase/auth';
 
-export const useUser = () => {
+type Options = {
+  required?: boolean;
+};
+
+export const useUser = ({ required = false }: Options = { required: false }) => {
+  const router = useRouter();
+
   const [user, setUser] = useState<User | null | undefined>(undefined);
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
+
+      if (user === null && required) {
+        router.push(pagesPath.$url().pathname);
+      }
     });
-  }, []);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [required, router]);
 
   return {
     user,

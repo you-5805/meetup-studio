@@ -24,7 +24,7 @@ export default function Page() {
 
   return (
     <>
-      <header className='flex h-16 items-center justify-between p-4'>
+      <header className='flex h-[104px] items-center justify-between p-8'>
         <p className='font-mono text-2xl font-bold'>
           <Link href={pagesPath.$url()}>meetup room</Link>
         </p>
@@ -46,9 +46,12 @@ export default function Page() {
           </button>
         ) : null}
       </header>
-      <div className='px-4 py-20'>
+      <div className='px-8 py-20'>
         <div className='mx-auto flex max-w-6xl flex-col items-start gap-8'>
-          <h1 className='text-5xl font-bold'>サービス説明</h1>
+          <h1 className='text-5xl font-bold leading-normal tracking-tight'>
+            <span className='whitespace-nowrap'>オフラインイベントを</span>
+            <span className='whitespace-nowrap'>もっとインタラクティブに</span>
+          </h1>
           <button
             onClick={signInAndPrepareEvent}
             className='rounded bg-orange-500 py-4 px-6 text-xl font-bold text-white transition-colors hover:bg-orange-400'
