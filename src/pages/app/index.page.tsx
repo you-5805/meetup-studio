@@ -6,12 +6,12 @@ export default function Page() {
   const { videoRef, isDisplaying, startDisplaying, stopDisplaying } = useDisplayScreen();
 
   return (
-    <div className='bg-gray-100 fixed inset-0 flex item-scenter p-8 justify-center'>
-      <div className='w-full aspect-video rounded-md overflow-hidden'>
-        <video ref={videoRef} autoPlay playsInline className='w-full h-full' />
+    <>
+      <div className='item-center flex h-[calc(100vh-80px)] justify-center overflow-hidden rounded-md bg-gray-100 p-8'>
+        <video ref={videoRef} autoPlay playsInline className='my-8 aspect-video w-full self-center' />
       </div>
 
-      <div className='absolute text-white font-bold w-full px-8 py-4 bottom-0 bg-black bg-opacity-60 backdrop-filter flex justify-center items-center backdrop-blur-sm'>
+      <div className='absolute bottom-0 flex h-20 w-full items-center justify-center bg-gray-800 py-4 font-bold text-white'>
         {isDisplaying ? (
           <Tooltip label='画面共有を停止'>
             <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
@@ -26,6 +26,6 @@ export default function Page() {
           </Tooltip>
         )}
       </div>
-    </div>
+    </>
   );
 }

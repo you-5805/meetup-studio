@@ -11,7 +11,7 @@ export const Tooltip = ({ label, children }: Props) => {
       <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
 
       <RadixTooltip.Portal>
-        <RadixTooltip.Content className='px-2 py-1.5 mb-1 bg-black rounded-md bg-opacity-80 text-white'>
+        <RadixTooltip.Content className='mb-1 rounded-md bg-black bg-opacity-80 px-2 py-1.5 text-white'>
           {label}
         </RadixTooltip.Content>
       </RadixTooltip.Portal>
