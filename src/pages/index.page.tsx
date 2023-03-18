@@ -1,21 +1,25 @@
-import { SignInModal } from './SignInModal/SignInModal';
+import { Layout } from '@/components/Layout/Layout';
 import { useUser } from '@/hooks/useUser';
 import { pagesPath } from '@/lib/$path';
 import { isSignInModalOpenedState } from '@/states/global';
 import cafe from 'public/img/cafe.png';
-import { Layout } from '@/components/Layout/Layout';
-import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useRecoilCallback } from 'recoil';
 
 export default function Page() {
   const router = useRouter();
   const navigateToApp = () => router.push(pagesPath.app.$url().pathname);
   const { user } = useUser();
-  const [isOpen, setIsOpen] = useRecoilState(isSignInModalOpenedState);
+  const openSignInModal = useRecoilCallback(
+    ({ set }) =>
+      () =>
+        set(isSignInModalOpenedState, true),
+    []
+  );
   const signInAndPrepareEvent = () => {
     if (!user) {
-      setIsOpen(true);
+      openSignInModal();
     } else {
       navigateToApp();
     }
@@ -37,13 +41,12 @@ export default function Page() {
 
           <button
             onClick={signInAndPrepareEvent}
-            className='animate-appear-slow rounded bg-orange-500 py-4 px-6 text-xl font-bold text-white transition-colors hover:bg-orange-400'
+            className='animate-appear-slow rounded bg-orange-500 py-4 px-4 text-xl font-bold text-white transition-colors hover:bg-orange-400 md:px-6'
           >
             {user === null ? 'サインインしてイベントを準備' : 'イベントを準備する'}
           </button>
         </div>
       </div>
-      <SignInModal isOpen={isOpen} setIsOpen={setIsOpen} navigateToApp={navigateToApp} />
     </Layout>
   );
 }

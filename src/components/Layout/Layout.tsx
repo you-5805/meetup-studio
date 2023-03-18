@@ -1,13 +1,14 @@
 import { pagesPath } from '@/lib/$path';
-import { Link } from '@/components/Link/Link';
 import { auth } from '@/lib/firebase';
 import logo from 'public/img/logo.png';
 import { useUser } from '@/hooks/useUser';
 import { isSignInModalOpenedState } from '@/states/global';
+import { SignInModal } from '@/pages/SignInModal/SignInModal';
 import Image from 'next/image';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useRecoilCallback } from 'recoil';
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 type Props = {
@@ -81,6 +82,8 @@ export const Layout = ({ children }: Props) => {
           on Freepik
         </p>
       </footer>
+
+      <SignInModal navigateToApp={navigateToApp} />
     </>
   );
 };

@@ -1,22 +1,25 @@
 import { auth, firestore } from '@/lib/firebase';
-import { staticPath } from '@/lib/$path';
+import { pagesPath, staticPath } from '@/lib/$path';
+import { isSignInModalOpenedState } from '@/states/global';
+import Link from 'next/link';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Image from 'next/image';
 import { setDoc, doc } from 'firebase/firestore';
+import { useRecoilState } from 'recoil';
 import type { AuthProvider } from 'firebase/auth';
 
 const github = new GithubAuthProvider();
 const google = new GoogleAuthProvider();
 
 type Props = {
-  isOpen: boolean;
-  setIsOpen: (v: boolean) => void;
   navigateToApp: () => void;
 };
 
-export const SignInModal = ({ isOpen, setIsOpen, navigateToApp }: Props) => {
+export const SignInModal = ({ navigateToApp }: Props) => {
+  const [isOpen, setIsOpen] = useRecoilState(isSignInModalOpenedState);
+
   const signIn = async (provider: AuthProvider) => {
     try {
       const { user } = await signInWithPopup(auth, provider);
@@ -49,10 +52,12 @@ export const SignInModal = ({ isOpen, setIsOpen, navigateToApp }: Props) => {
   return (
     <RadixDialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <RadixDialog.Portal>
-        <RadixDialog.Overlay className='fixed inset-0 animate-appear bg-black bg-opacity-20 data-[state=open]:animate-appear data-[state=closed]:animate-disappear' />
+        <RadixDialog.Overlay className='fixed inset-0 animate-appear bg-black bg-opacity-30 data-[state=open]:animate-appear data-[state=closed]:animate-disappear' />
         <RadixDialog.Content className='fixed top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col gap-6 rounded-md bg-white p-6 shadow-xl'>
-          <div className='flex items-start justify-between'>
-            <RadixDialog.Title className='text-xl font-bold'>サインイン</RadixDialog.Title>
+          <div className='flex min-w-[300px] items-start justify-between'>
+            <RadixDialog.Title className='w-full text-center text-xl font-bold md:text-left'>
+              サインイン
+            </RadixDialog.Title>
 
             <RadixDialog.Close asChild>
               <button aria-label='モーダルを閉じる'>
@@ -61,14 +66,16 @@ export const SignInModal = ({ isOpen, setIsOpen, navigateToApp }: Props) => {
             </RadixDialog.Close>
           </div>
 
-          <RadixDialog.Description>イベントを開催するには SNS でのサインインが必要です。</RadixDialog.Description>
+          <RadixDialog.Description className='md:text-md text-sm'>
+            イベントを開催するには SNS でのサインインが必要です。
+          </RadixDialog.Description>
           <div className='flex flex-col items-center gap-4'>
             <button
               onClick={() => signIn(github)}
               className='flex w-full max-w-md items-center justify-center gap-3 rounded bg-[#242A2F] p-2 font-bold text-white transition-opacity hover:opacity-80'
             >
               <Image src={staticPath.img.github_svg} height={20} width={20} alt='' />
-              Github でサインイン
+              Login with GitHub
             </button>
 
             <button
@@ -94,8 +101,15 @@ export const SignInModal = ({ isOpen, setIsOpen, navigateToApp }: Props) => {
                   fill='#ea4335'
                 ></path>
               </svg>
-              Google でサインイン
+              Login with Google
             </button>
+
+            <p className='md:text-md text-xs'>
+              <Link href={pagesPath.terms.$url()} className='text-gray-700 underline' target='_blank'>
+                利用規約
+              </Link>
+              に同意の上、サインインしてください。
+            </p>
           </div>
         </RadixDialog.Content>
       </RadixDialog.Portal>
