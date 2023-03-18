@@ -39,6 +39,7 @@ export const SignInModal = ({ isOpen, setIsOpen, navigateToApp }: Props) => {
         return;
       }
 
+      console.error(err);
       alert('エラーが発生しました。');
     } finally {
       setIsOpen(false);
