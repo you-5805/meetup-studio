@@ -1,7 +1,7 @@
 import { auth } from '@/lib/firebase';
 import { pagesPath } from '@/lib/$path';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import type { User } from 'firebase/auth';
 
 type Options = {

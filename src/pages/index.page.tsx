@@ -1,5 +1,3 @@
-'use client';
-
 import { SignInModal } from './SignInModal/SignInModal';
 import { pagesPath } from '@/lib/$path';
 import { Link } from '@/components/Link/Link';
@@ -7,7 +5,7 @@ import { useUser } from '@/hooks/useUser';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export default function Page() {
   const router = useRouter();
