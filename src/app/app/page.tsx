@@ -15,14 +15,23 @@ export default function Page() {
 
   const [roomName, setRoomName] = useState<string>('');
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = (async (e) => {
     e.preventDefault();
     if (!user) return;
 
-    const roomId = nanoid();
+    setIsLoading(true);
+    try {
+      const roomId = nanoid();
 
-    await setDoc(doc(firestore, 'rooms', roomId), { id: roomId, name: roomName, owner: user.uid });
-    router.push(`/app/room/${roomId}`);
+      await setDoc(doc(firestore, 'rooms', roomId), { id: roomId, name: roomName, owner: user.uid });
+      router.push(`/app/room/${roomId}`);
+    } catch (err) {
+      console.error(err);
+      alert('エラーが発生しました。');
+      setIsLoading(false);
+    }
   }) satisfies FormEventHandler;
 
   return (
@@ -43,9 +52,10 @@ export default function Page() {
 
           <button
             type='submit'
-            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-600'
+            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400 disabled:bg-orange-300'
+            disabled={isLoading}
           >
-            部屋を作る
+            {isLoading ? '作成中...' : '部屋を作る'}
           </button>
         </form>
       </div>

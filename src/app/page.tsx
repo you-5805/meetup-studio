@@ -26,13 +26,13 @@ export default function Page() {
     <>
       <header className='flex h-[104px] items-center justify-between p-8'>
         <p className='font-mono text-2xl font-bold'>
-          <Link href={pagesPath.$url()}>meetup room</Link>
+          <Link href={pagesPath.$url()}>Meetup Studio</Link>
         </p>
 
         {user === null ? (
           <button
             onClick={signInAndPrepareEvent}
-            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-600'
+            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400'
           >
             サインイン
           </button>

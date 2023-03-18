@@ -1,5 +1,5 @@
 {
-  "name": "sharescreeen-web",
+  "name": "meetup-studio",
   "license": "MIT",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
