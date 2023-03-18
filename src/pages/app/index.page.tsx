@@ -1,10 +1,10 @@
 import { CommentCard } from './CommentCard/CommentCard';
 import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { useDisplayScreen } from '@/hooks/useDisplayScreen';
-import { images } from '@/lib/images';
 import { cn } from '@/lib/cn';
+import { useQrUrl } from '@/hooks/useQrUrl';
 import Image from 'next/image';
-import { NoSymbolIcon, ShareIcon, PlayCircleIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { NoSymbolIcon, ShareIcon, TvIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
 export default function Page() {
@@ -18,6 +18,8 @@ export default function Page() {
     setHasCopied(true);
     setTimeout(() => setHasCopied(false), 500);
   };
+
+  const qrUrl = useQrUrl();
 
   return (
     <>
@@ -33,23 +35,25 @@ export default function Page() {
           <CommentCard />
         </div>
 
-        <div className='absolute left-4 bottom-4 shadow-2xl'>
-          <button
-            type='button'
-            className={cn('group relative block', {
-              'h-20 w-20': isQrMinimized,
-              'h-60 w-60': !isQrMinimized,
-            })}
-            onClick={toggleQrSize}
-            aria-label={`QRコードを${buttonLabel}`}
-          >
-            <Image src={images.qr_png} fill alt='この部屋へのQRコード' />
+        {qrUrl !== null && (
+          <div className='absolute left-4 bottom-4 overflow-hidden rounded-2xl shadow-2xl'>
+            <button
+              type='button'
+              className={cn('group relative block', {
+                'h-20 w-20': isQrMinimized,
+                'h-60 w-60': !isQrMinimized,
+              })}
+              onClick={toggleQrSize}
+              aria-label={`QRコードを${buttonLabel}`}
+            >
+              <Image src={qrUrl} fill alt='この部屋へのQRコード' className='scale-110' />
 
-            <span className='absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-black bg-opacity-60 group-hover:flex'>
-              <span className='text-white'>{isQrMinimized ? '拡大' : '縮小'}</span>
-            </span>
-          </button>
-        </div>
+              <span className='absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-black bg-opacity-60 group-hover:flex'>
+                <span className='text-white'>{isQrMinimized ? '拡大' : '縮小'}</span>
+              </span>
+            </button>
+          </div>
+        )}
       </div>
 
       <div className='absolute bottom-0 flex h-14 w-full items-center justify-center gap-8 bg-gray-800 font-bold text-white'>
@@ -62,7 +66,7 @@ export default function Page() {
         ) : (
           <Tooltip label='画面共有を開始'>
             <button type='button' onClick={startDisplaying} aria-label='画面共有を開始'>
-              <PlayCircleIcon color='white' className='h-10 w-10 hover:opacity-80' />
+              <TvIcon color='white' className='h-10 w-10 hover:opacity-80' />
             </button>
           </Tooltip>
         )}
