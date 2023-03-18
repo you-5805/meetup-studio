@@ -1,11 +1,63 @@
+'use client';
+
+import { SignInModal } from './SignInModal/SignInModal';
 import { pagesPath } from '@/lib/$path';
 import { Link } from '@/components/Link/Link';
+import { useUser } from '@/hooks/useUser';
+import { auth } from '@/lib/firebase';
+import { signOut } from 'firebase/auth';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
+  const router = useRouter();
+  const navigateToApp = () => router.push(pagesPath.app.$url().pathname);
+  const { user } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
+  const signInAndPrepareEvent = () => {
+    if (!user) {
+      setIsOpen(true);
+    } else {
+      navigateToApp();
+    }
+  };
+
   return (
     <>
-      <h1>サービス説明</h1>
-      <Link href={pagesPath.app.$url()}>App</Link>
+      <header className='flex h-16 items-center justify-between p-4'>
+        <p className='font-mono text-2xl font-bold'>
+          <Link href={pagesPath.$url()}>meetup room</Link>
+        </p>
+
+        {user === null ? (
+          <button
+            onClick={signInAndPrepareEvent}
+            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-600'
+          >
+            サインイン
+          </button>
+        ) : user !== undefined ? (
+          <button
+            type='button'
+            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-400'
+            onClick={() => signOut(auth)}
+          >
+            サインアウト
+          </button>
+        ) : null}
+      </header>
+      <div className='px-4 py-20'>
+        <div className='mx-auto flex max-w-6xl flex-col items-start gap-8'>
+          <h1 className='text-5xl font-bold'>サービス説明</h1>
+          <button
+            onClick={signInAndPrepareEvent}
+            className='rounded bg-orange-500 py-4 px-6 text-xl font-bold text-white transition-colors hover:bg-orange-400'
+          >
+            サインインしてイベントを準備
+          </button>
+        </div>
+      </div>
+      <SignInModal isOpen={isOpen} setIsOpen={setIsOpen} navigateToApp={navigateToApp} />
     </>
   );
 }

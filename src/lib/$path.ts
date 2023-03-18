@@ -8,7 +8,11 @@ export const pagesPath = {
 export type PagesPath = typeof pagesPath
 
 export const staticPath = {
-  _gitkeep: '/.gitkeep'
+  _gitkeep: '/.gitkeep',
+  img: {
+    github_svg: '/img/github.svg',
+    google_svg: '/img/google.svg'
+  }
 } as const
 
 export type StaticPath = typeof staticPath

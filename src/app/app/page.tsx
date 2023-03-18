@@ -1,14 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useUser } from '@/hooks/useUser';
+import { pagesPath } from '@/lib/$path';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type { FormEventHandler } from 'react';
 
 export default function Page() {
+  const router = useRouter();
+
+  const { user } = useUser();
+
   const [roomName, setRoomName] = useState<string>('');
 
   const onSubmit = (async (e) => {
     e.preventDefault();
   }) satisfies FormEventHandler;
+
+  useEffect(() => {
+    if (user === null) {
+      router.push(pagesPath.$url().pathname);
+    }
+  }, [router, user]);
+
+  if (!user) return null;
 
   return (
     <div className='sticky inset-0 flex min-h-screen items-center justify-center bg-gray-100 p-4'>
