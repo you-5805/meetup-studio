@@ -7,11 +7,11 @@ export default function Page() {
 
   return (
     <>
-      <div className='item-center flex h-[calc(100vh-80px)] justify-center overflow-hidden rounded-md bg-gray-100 p-8'>
+      <div className='item-center flex h-[calc(100vh-64px)] justify-center overflow-hidden rounded-md bg-gray-100 p-8'>
         <video ref={videoRef} autoPlay playsInline className='aspect-video w-full self-center' />
       </div>
 
-      <div className='absolute bottom-0 flex h-20 w-full items-center justify-center bg-gray-800 py-4 font-bold text-white'>
+      <div className='absolute bottom-0 flex h-16 w-full items-center justify-center bg-gray-800 py-4 font-bold text-white'>
         {isDisplaying ? (
           <Tooltip label='画面共有を停止'>
             <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
