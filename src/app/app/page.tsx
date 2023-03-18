@@ -1,51 +1,39 @@
 'use client';
 
-import { CommentCard } from './CommentCard/CommentCard';
-import { CopyLinkButton } from './CopyLinkButton/CopyLinkButton';
-import { QrImage } from './QrImage/QrImage';
-import { Tooltip } from '@/components/Tooltip/Tooltip';
-import { useDisplayScreen } from '@/hooks/useDisplayScreen';
-import { NoSymbolIcon, TvIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import type { FormEventHandler } from 'react';
 
 export default function Page() {
-  const { videoRef, isDisplaying, startDisplaying, stopDisplaying } = useDisplayScreen();
+  const [roomName, setRoomName] = useState<string>('');
+
+  const onSubmit = (async (e) => {
+    e.preventDefault();
+  }) satisfies FormEventHandler;
 
   return (
-    <>
-      <div className='relative grid h-[calc(100vh-56px)] grid-cols-3 gap-3 bg-gray-100 p-2 lg:grid-cols-4'>
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center rounded-md bg-black shadow-lg lg:col-span-3'
-        />
+    <div className='sticky inset-0 flex min-h-screen items-center justify-center bg-gray-100 p-4'>
+      <div className='mx-auto w-80 rounded-lg bg-white p-4 shadow-lg'>
+        <form onSubmit={onSubmit} className='flex flex-col gap-8'>
+          <h1 className='text-center text-xl font-bold'>部屋の作成</h1>
 
-        <div className='col-span-1'>
-          <CommentCard />
-        </div>
+          <label className='flex flex-col gap-1'>
+            <span className='font-bold'>イベント名</span>
+            <input
+              type='text'
+              value={roomName}
+              onChange={({ target: { value } }) => setRoomName(value)}
+              className='rounded-lg border p-2 font-bold'
+            />
+          </label>
 
-        <QrImage />
+          <button
+            type='submit'
+            className='rounded bg-orange-500 py-2 px-4 font-bold text-white transition-colors hover:bg-orange-600'
+          >
+            部屋を作る
+          </button>
+        </form>
       </div>
-
-      <div className='absolute bottom-0 flex h-14 w-full items-center justify-center gap-8 bg-gray-800 font-bold text-white'>
-        {isDisplaying ? (
-          <Tooltip label='画面共有を停止'>
-            <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
-              <NoSymbolIcon color='white' className='h-10 w-10 hover:opacity-80' />
-            </button>
-          </Tooltip>
-        ) : (
-          <Tooltip label='画面共有を開始'>
-            <button type='button' onClick={startDisplaying} aria-label='画面共有を開始'>
-              <TvIcon color='white' className='h-10 w-10 hover:opacity-80' />
-            </button>
-          </Tooltip>
-        )}
-
-        <Tooltip label='この部屋のURLをコピー'>
-          <CopyLinkButton />
-        </Tooltip>
-      </div>
-    </>
+    </div>
   );
 }
