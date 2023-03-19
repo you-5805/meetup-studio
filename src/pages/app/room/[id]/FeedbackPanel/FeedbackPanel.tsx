@@ -1,6 +1,5 @@
 import { Layout } from '@/components/Layout/Layout';
 import { usePostComment } from '@/hooks/usePostComment';
-import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { PaperAirplaneIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { useId } from 'react';
 import type { User } from 'firebase/auth';
