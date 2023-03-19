@@ -42,6 +42,7 @@ export const CreateRoom = ({ user }: Props) => {
           name: user.displayName ?? '',
           img: user.photoURL,
         },
+        cohostIds: [],
         cohosts: [],
         createdAt: new Date(),
         updatedAt: new Date(),

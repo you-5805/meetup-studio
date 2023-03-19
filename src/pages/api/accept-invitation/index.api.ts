@@ -36,6 +36,7 @@ const handler = (async (req, res) => {
     .collection('rooms')
     .doc(roomId)
     .update({
+      cohostIds: [...room.cohostIds, user.uid],
       cohosts: [...room.cohosts, user],
     });
 

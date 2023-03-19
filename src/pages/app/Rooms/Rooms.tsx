@@ -16,14 +16,20 @@ export const Rooms = ({ user }: Props) => {
 
   return (
     <section className='flex flex-col items-center gap-8'>
-      <h2 className='text-xl font-bold'>作成したイベント</h2>
+      <h2 className='text-xl font-bold'>運営メンバーになっているイベント</h2>
       <div className='flex max-w-4xl flex-wrap justify-center gap-6'>
         {rooms.map((room) => (
           <article key={room.id}>
             <Link
               href={pagesPath.app.room._id(room.id).$url()}
-              className='flex w-96 flex-col items-start gap-6 rounded-lg bg-white py-3 px-4 shadow-lg transition-all hover:bg-gray-50 hover:shadow-md'
+              className='relative flex w-96 flex-col items-start gap-6 rounded-lg bg-white py-3 px-4 shadow-lg transition-all hover:bg-gray-50 hover:shadow-md'
             >
+              {room.owner.uid !== user?.uid ? (
+                <div className='absolute right-4 top-3 rounded-lg border border-orange-500 p-1 px-2 text-xs text-orange-500'>
+                  招待
+                </div>
+              ) : null}
+
               <p className='text-lg font-bold'>{room.name}</p>
               <div>
                 <p className='flex items-center gap-1 text-xs'>

@@ -10,6 +10,7 @@ export type RoomDocument = {
   id: string;
   name: string;
   owner: User;
+  cohostIds: string[];
   cohosts: User[];
   createdAt: Timestamp;
   updatedAt: Timestamp;
