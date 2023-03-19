@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@heroicons/react': ^2.0.16
+  '@hookform/resolvers': ^2.9.11
   '@radix-ui/react-dialog': ^1.0.3
   '@radix-ui/react-scroll-area': ^1.0.3
   '@radix-ui/react-tooltip': ^1.0.5
@@ -19,6 +20,7 @@ specifiers:
   '@vitejs/plugin-react': ^3.0.1
   autoprefixer: ^10.4.13
   classnames: ^2.3.2
+  date-fns: ^2.29.3
   eslint: ^8.32.0
   eslint-config-next: ^13.1.5
   eslint-config-prettier: ^8.6.0
@@ -38,19 +40,23 @@ specifiers:
   qrcode: ^1.5.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-hook-form: ^7.43.7
   recoil: ^0.7.7
   tailwindcss: ^3.2.4
   typescript: ^5.0.0
   vitest: ^0.28.3
+  zod: ^3.21.4
 
 dependencies:
   '@heroicons/react': 2.0.16_react@18.2.0
+  '@hookform/resolvers': 2.9.11_react-hook-form@7.43.7
   '@radix-ui/react-dialog': 1.0.3_5ndqzdd6t4rivxsukjv3i3ak2q
   '@radix-ui/react-scroll-area': 1.0.3_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-tooltip': 1.0.5_5ndqzdd6t4rivxsukjv3i3ak2q
   '@radix-ui/react-visually-hidden': 1.0.2_biqbaboplfbrettd7655fr4n2y
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
   classnames: 2.3.2
+  date-fns: 2.29.3
   firebase: 9.18.0
   firebase-admin: 11.5.0
   nanoid: 4.0.1
@@ -58,7 +64,9 @@ dependencies:
   qrcode: 1.5.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.43.7_react@18.2.0
   recoil: 0.7.7_biqbaboplfbrettd7655fr4n2y
+  zod: 3.21.4
 
 devDependencies:
   '@testing-library/jest-dom': 5.16.5
@@ -967,6 +975,14 @@ packages:
       react: '>= 16'
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /@hookform/resolvers/2.9.11_react-hook-form@7.43.7:
+    resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.43.7_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:
@@ -2553,6 +2569,11 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
     dev: true
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -5454,6 +5475,15 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-hook-form/7.43.7_react@18.2.0:
+    resolution: {integrity: sha512-38yehQkQQ5uufaPKFScs7jhLE8n3+LG9H/BZfFAiBL2+7piDmw/BrdNJV4irzMaPnWZGhmGLHVICHXNVGIuXZg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -6681,3 +6711,7 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
+
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+    dev: false

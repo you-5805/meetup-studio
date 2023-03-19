@@ -1,5 +1,5 @@
+import { convertRoom } from '@/lib/convertRoom';
 import { firestore } from '@/lib/firebaseAdmin';
-import type { Room } from '@/types/Room';
 import type { GetServerSideProps, InferGetStaticPropsType } from 'next';
 
 export const getServerSideProps = (async ({ query }) => {
@@ -9,7 +9,7 @@ export const getServerSideProps = (async ({ query }) => {
   const documentSnapshot = await firestore.collection('rooms').doc(roomId).get();
   if (!documentSnapshot.exists) return { notFound: true };
 
-  const room = documentSnapshot.data() as Room;
+  const room = convertRoom(documentSnapshot);
 
   return {
     props: {
