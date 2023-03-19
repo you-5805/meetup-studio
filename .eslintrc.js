@@ -15,6 +15,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    '@next/next/no-img-element': 'off',
     'react/react-in-jsx-scope': 'off',
     /**
      * custom

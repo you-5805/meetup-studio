@@ -8,16 +8,15 @@ import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebas
 import Image from 'next/image';
 import { setDoc, doc } from 'firebase/firestore';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
 import type { AuthProvider } from 'firebase/auth';
 
 const github = new GithubAuthProvider();
 const google = new GoogleAuthProvider();
 
-type Props = {
-  navigateToApp: () => void;
-};
+export const SignInModal = () => {
+  const router = useRouter();
 
-export const SignInModal = ({ navigateToApp }: Props) => {
   const [isOpen, setIsOpen] = useRecoilState(isSignInModalOpenedState);
 
   const setLoading = useSetRecoilState(isScreenLoadingState);
@@ -33,7 +32,10 @@ export const SignInModal = ({ navigateToApp }: Props) => {
         email: user.email,
       });
 
-      navigateToApp();
+      // 参加者としてサインインした時、画面遷移しない
+      if (router.pathname.includes('/app/room')) return;
+
+      router.push(pagesPath.app.$url().pathname);
     } catch (err) {
       if (
         typeof err === 'object' &&
