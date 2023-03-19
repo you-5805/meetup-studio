@@ -14,7 +14,7 @@ export const CopyLinkButton = () => {
     <Tooltip label='この部屋のURLをコピー'>
       <button type='button' aria-label='この部屋のURLをコピー' onClick={copyUrl}>
         {hasCopied ? (
-          <CheckIcon className='h-10 w-10 hover:opacity-80' />
+          <CheckIcon color='white' className='h-10 w-10 hover:opacity-80' />
         ) : (
           <ShareIcon color='white' className='h-10 w-10 hover:opacity-80' />
         )}

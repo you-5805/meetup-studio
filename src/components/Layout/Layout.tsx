@@ -1,4 +1,5 @@
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import { Button } from '../Button/Button';
 import { pagesPath } from '@/lib/$path';
 import { auth } from '@/lib/firebase';
 import logo from 'public/img/logo.png';
@@ -47,12 +48,7 @@ export const Layout = ({ children }: Props) => {
         </Link>
 
         {user === null ? (
-          <button
-            onClick={signInAndPrepareEvent}
-            className='md:text-md animate-appear-slow rounded bg-orange-500 py-1.5 px-2 text-sm font-bold text-white transition-colors hover:bg-orange-400 md:py-2 md:px-4'
-          >
-            サインイン
-          </button>
+          <Button onClick={signInAndPrepareEvent}>サインイン</Button>
         ) : user !== undefined ? (
           <button
             type='button'
