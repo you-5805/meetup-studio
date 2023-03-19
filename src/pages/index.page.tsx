@@ -1,3 +1,4 @@
+import { SignInModal } from './SignInModal/SignInModal';
 import { Layout } from '@/components/Layout/Layout';
 import { useUser } from '@/hooks/useUser';
 import { pagesPath } from '@/lib/$path';
@@ -47,6 +48,7 @@ export default function Page() {
           </button>
         </div>
       </div>
+      <SignInModal />
     </Layout>
   );
 }

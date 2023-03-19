@@ -37,7 +37,13 @@ export const CreateRoom = ({ user }: Props) => {
       await setDoc(doc(firestore, 'rooms', roomId), {
         id: roomId,
         name: roomName,
-        owner: user.uid,
+        owner: {
+          uid: user.uid,
+          name: user.displayName ?? '',
+          img: user.photoURL,
+        },
+        cohostIds: [],
+        cohosts: [],
         createdAt: new Date(),
         updatedAt: new Date(),
       });

@@ -5,6 +5,9 @@ export const pagesPath = {
   "app": {
     "room": {
       _id: (id: string | number) => ({
+        "invitation": {
+          $url: (url?: { hash?: string }) => ({ pathname: '/app/room/[id]/invitation' as const, query: { id }, hash: url?.hash })
+        },
         $url: (url?: { hash?: string }) => ({ pathname: '/app/room/[id]' as const, query: { id }, hash: url?.hash })
       })
     },

@@ -9,14 +9,17 @@ import Image from 'next/image';
 import { setDoc, doc } from 'firebase/firestore';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
-import type { AuthProvider } from 'firebase/auth';
+import type { AuthProvider, User } from 'firebase/auth';
 
 const github = new GithubAuthProvider();
 const google = new GoogleAuthProvider();
 
-export const SignInModal = () => {
-  const router = useRouter();
+type Props = {
+  afterSignIn?: null | ((user: User) => void);
+};
 
+export const SignInModal = ({ afterSignIn }: Props) => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useRecoilState(isSignInModalOpenedState);
 
   const setLoading = useSetRecoilState(isScreenLoadingState);
@@ -32,10 +35,12 @@ export const SignInModal = () => {
         email: user.email,
       });
 
-      // 参加者としてサインインした時、画面遷移しない
-      if (router.pathname.includes('/app/room')) return;
-
-      router.push(pagesPath.app.$url().pathname);
+      if (afterSignIn === null) return;
+      if (afterSignIn === undefined) {
+        router.push(pagesPath.app.$url().pathname);
+      } else {
+        afterSignIn(user);
+      }
     } catch (err) {
       if (
         typeof err === 'object' &&

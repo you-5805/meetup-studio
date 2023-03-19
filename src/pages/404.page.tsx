@@ -1,3 +1,4 @@
+import { SignInModal } from './SignInModal/SignInModal';
 import { Layout } from '@/components/Layout/Layout';
 import { pagesPath } from '@/lib/$path';
 import Link from 'next/link';
@@ -20,6 +21,7 @@ export default function Page() {
           トップページへ戻る
         </Link>
       </div>
+      <SignInModal />
     </Layout>
   );
 }

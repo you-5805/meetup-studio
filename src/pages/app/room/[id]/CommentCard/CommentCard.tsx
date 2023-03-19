@@ -86,7 +86,6 @@ export const CommentCard = ({ room }: Props) => {
           .docChanges()
           .filter((change) => change.type === 'added')
           .map((change) => convertComment(change.doc));
-        console.log({ newComments });
         setComments((prev) => [...prev, ...newComments]);
       }
     );
@@ -131,7 +130,10 @@ export const CommentCard = ({ room }: Props) => {
                   {getAgo(createdAt)}
                 </time>
               </div>
-              <p className='text-sm md:text-lg' dangerouslySetInnerHTML={{ __html: replaceLinks(content) }} />
+              <p
+                className='whitespace-pre-wrap text-sm md:text-lg'
+                dangerouslySetInnerHTML={{ __html: replaceLinks(content) }}
+              />
             </div>
           ))
         )}

@@ -1,5 +1,6 @@
 import { Layout } from '@/components/Layout/Layout';
 import { usePostComment } from '@/hooks/usePostComment';
+import { SignInModal } from '@/pages/SignInModal/SignInModal';
 import { PaperAirplaneIcon, CheckIcon } from '@heroicons/react/24/outline';
 import { useId } from 'react';
 import type { User } from 'firebase/auth';
@@ -59,6 +60,8 @@ export const FeedbackPanel = ({ room, user }: Props) => {
 
         <p className='px-4'>このページはコメント送信専用で、他の人が投稿したコメントなどは表示されません</p>
       </div>
+
+      <SignInModal afterSignIn={null} />
     </Layout>
   );
 };

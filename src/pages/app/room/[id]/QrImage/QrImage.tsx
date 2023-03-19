@@ -22,7 +22,7 @@ export const QrImage = () => {
         onClick={toggleQrSize}
         aria-label={`QRコードを${buttonLabel}`}
       >
-        <Image src={qrUrl} fill alt='この部屋へのQRコード' className='scale-110' />
+        <Image src={qrUrl} fill alt='このイベントへのQRコード' className='scale-110' />
 
         <span className='absolute top-0 left-0 hidden h-full w-full items-center justify-center bg-black bg-opacity-60 group-hover:flex'>
           <span className='text-white'>{isQrMinimized ? '拡大' : '縮小'}</span>

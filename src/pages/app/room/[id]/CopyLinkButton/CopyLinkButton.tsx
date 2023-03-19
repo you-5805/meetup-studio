@@ -11,12 +11,12 @@ export const CopyLinkButton = () => {
   };
 
   return (
-    <Tooltip label='この部屋のURLをコピー'>
-      <button type='button' aria-label='この部屋のURLをコピー' onClick={copyUrl}>
+    <Tooltip label='このイベントのURLをコピー'>
+      <button type='button' aria-label='このイベントのURLをコピー' onClick={copyUrl}>
         {hasCopied ? (
-          <CheckIcon color='white' className='h-10 w-10 hover:opacity-80' />
+          <CheckIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
         ) : (
-          <ShareIcon color='white' className='h-10 w-10 hover:opacity-80' />
+          <ShareIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
         )}
       </button>
     </Tooltip>
