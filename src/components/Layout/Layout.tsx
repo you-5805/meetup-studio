@@ -64,6 +64,9 @@ export const Layout = ({ children }: Props) => {
           <Link href={pagesPath.terms.$url()}>
             <span className='hover:text-gray-600 hover:underline'>利用規約</span>
           </Link>
+          <Link href={pagesPath.privacy_policy.$url()}>
+            <span className='hover:text-gray-600 hover:underline'>プライバシーポリシー</span>
+          </Link>
           <a
             href='https://twitter.com/yoiwamoto'
             target='_blank'
