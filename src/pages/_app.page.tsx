@@ -1,3 +1,4 @@
+import { Seo } from './seo';
 import { TooltipProvider } from '@/components/Tooltip/Tooltip';
 import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
@@ -8,9 +9,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Meetup Studio</title>
         <meta content='width=device-width, initial-scale=1' name='viewport' />
       </Head>
+      <Seo />
       <RecoilRoot>
         <TooltipProvider>
           <Component {...pageProps} />
