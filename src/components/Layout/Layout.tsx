@@ -85,7 +85,7 @@ export const Layout = ({ children }: Props) => {
         )}
       </footer>
 
-      <SignInModal navigateToApp={navigateToApp} />
+      <SignInModal />
     </>
   );
 };

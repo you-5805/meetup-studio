@@ -48,7 +48,7 @@ export const Studio = ({ room }: Props) => {
         </div>
 
         <div className='col-span-1'>
-          <CommentCard />
+          <CommentCard room={room} />
         </div>
 
         <QrImage />
