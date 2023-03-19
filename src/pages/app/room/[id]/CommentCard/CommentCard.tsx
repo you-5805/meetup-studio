@@ -1,7 +1,6 @@
 import { firestore } from '@/lib/firebase';
 import { convertComment } from '@/lib/convertComment';
 import { getAgo } from '@/lib/formatDate';
-import { replaceLinks } from '@/lib/replaceLinks';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDownIcon, UserIcon } from '@heroicons/react/24/outline';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
