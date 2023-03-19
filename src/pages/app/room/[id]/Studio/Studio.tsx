@@ -35,8 +35,8 @@ export const Studio = ({ room }: Props) => {
     <>
       <ReactionField roomId={room.id} />
 
-      <div className={cn('relative grid h-[calc(100vh-56px)] grid-cols-3 gap-3 bg-gray-100 p-2 lg:grid-cols-4', {})}>
-        <div className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center lg:col-span-3'>
+      <div className='relative grid h-[calc(100vh-56px)] grid-cols-3 gap-3 bg-orange-50 p-2 lg:grid-cols-4 xl:grid-cols-5'>
+        <div className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center lg:col-span-3 xl:col-span-4'>
           <video
             ref={videoRef}
             autoPlay
@@ -47,7 +47,7 @@ export const Studio = ({ room }: Props) => {
             })}
           />
 
-          {/* {!isDisplaying && <p className='text-xl'>イベントの開始までしばらくお待ちください</p>} */}
+          {!isDisplaying && <p className='text-xl text-white'>画面を共有してください</p>}
         </div>
 
         <div className='col-span-1'>
@@ -62,17 +62,17 @@ export const Studio = ({ room }: Props) => {
           <h1>{room.name}</h1>
         </div>
 
-        <div className='flex items-center justify-center gap-8'>
+        <div className='flex items-center justify-center gap-6'>
           {isDisplaying ? (
             <Tooltip label='画面共有を停止'>
               <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
-                <NoSymbolIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-9 lg:w-9' />
+                <NoSymbolIcon color='white' className='h-8 w-8 hover:opacity-80' />
               </button>
             </Tooltip>
           ) : (
             <Tooltip label='画面共有を開始'>
               <button type='button' onClick={startDisplaying} aria-label='画面共有を開始'>
-                <TvIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-9 lg:w-9' />
+                <TvIcon color='white' className='h-8 w-8 hover:opacity-80' />
               </button>
             </Tooltip>
           )}
@@ -81,16 +81,13 @@ export const Studio = ({ room }: Props) => {
 
           <Tooltip label='設定'>
             <button type='button' aria-label='設定モーダルを開く' onClick={openSettingModal}>
-              <Cog6ToothIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-9 lg:w-9' />
+              <Cog6ToothIcon color='white' className='h-8 w-8 hover:opacity-80' />
             </button>
           </Tooltip>
 
           <Tooltip label='投票 (comming soon)'>
             <button type='button' aria-label='投票 (comming soon)' onClick={() => alert('未実装の機能です')}>
-              <ChatBubbleLeftEllipsisIcon
-                color='gray'
-                className='h-8 w-8 cursor-not-allowed hover:opacity-80 lg:h-9 lg:w-9'
-              />
+              <ChatBubbleLeftEllipsisIcon color='gray' className='h-8 w-8 cursor-not-allowed hover:opacity-80' />
             </button>
           </Tooltip>
         </div>
