@@ -3,6 +3,7 @@
 import { CreateRoom } from './CreateRoom/CreateRoom';
 import { Rooms } from './Rooms/Rooms';
 import { Seo } from './seo';
+import { SignInModal } from '../SignInModal/SignInModal';
 import { useUser } from '@/hooks/useUser';
 import { Layout } from '@/components/Layout/Layout';
 
@@ -19,6 +20,7 @@ export default function Page() {
           <Rooms user={user} />
         </div>
       </Layout>
+      <SignInModal />
     </>
   );
 }

@@ -1,9 +1,16 @@
 import type { Timestamp } from 'firebase/firestore';
 
+type User = {
+  name: string;
+  uid: string;
+  img: string | null;
+};
+
 export type RoomDocument = {
   id: string;
   name: string;
-  owner: string;
+  owner: User;
+  cohosts: User[];
   createdAt: Timestamp;
   updatedAt: Timestamp;
 };

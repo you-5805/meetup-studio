@@ -63,13 +63,13 @@ export const Studio = ({ room }: Props) => {
           {isDisplaying ? (
             <Tooltip label='画面共有を停止'>
               <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
-                <NoSymbolIcon color='white' className='h-10 w-10 hover:opacity-80' />
+                <NoSymbolIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
               </button>
             </Tooltip>
           ) : (
             <Tooltip label='画面共有を開始'>
               <button type='button' onClick={startDisplaying} aria-label='画面共有を開始'>
-                <TvIcon color='white' className='h-10 w-10 hover:opacity-80' />
+                <TvIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
               </button>
             </Tooltip>
           )}
@@ -78,13 +78,16 @@ export const Studio = ({ room }: Props) => {
 
           <Tooltip label='設定'>
             <button type='button' aria-label='設定モーダルを開く' onClick={openSettingModal}>
-              <Cog6ToothIcon color='white' className='h-10 w-10 hover:opacity-80' />
+              <Cog6ToothIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
             </button>
           </Tooltip>
 
           <Tooltip label='投票 (comming soon)'>
             <button type='button' aria-label='投票 (comming soon)' onClick={() => alert('未実装の機能です')}>
-              <ChatBubbleLeftEllipsisIcon color='gray' className='h-10 w-10 cursor-not-allowed hover:opacity-80' />
+              <ChatBubbleLeftEllipsisIcon
+                color='gray'
+                className='h-8 w-8 cursor-not-allowed hover:opacity-80 lg:h-10 lg:w-10'
+              />
             </button>
           </Tooltip>
         </div>

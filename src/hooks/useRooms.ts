@@ -15,7 +15,7 @@ export const useRooms = ({ user }: Options) => {
   useEffect(() => {
     if (!user) return;
 
-    getDocs(query(collection(firestore, 'rooms'), where('owner', '==', user.uid))).then((querySnapshot) => {
+    getDocs(query(collection(firestore, 'rooms'), where('owner.uid', '==', user.uid))).then((querySnapshot) => {
       const data = querySnapshot.docs.map(convertRoom);
       setRooms(data);
     });

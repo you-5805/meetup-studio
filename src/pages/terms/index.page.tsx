@@ -1,3 +1,4 @@
+import { SignInModal } from '../SignInModal/SignInModal';
 import { Layout } from '@/components/Layout/Layout';
 import Head from 'next/head';
 
@@ -55,6 +56,7 @@ export default function Page() {
           </p>
         </div>
       </section>
+      <SignInModal />
     </Layout>
   );
 }

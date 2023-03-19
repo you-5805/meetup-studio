@@ -20,7 +20,7 @@ export default function Page({ room }: PageProps) {
     <>
       <Seo eventTitle={room.name} />
 
-      {user?.uid === room.owner ? <Studio room={room} /> : <FeedbackPanel room={room} user={user} />}
+      {user?.uid === room.owner.uid ? <Studio room={room} /> : <FeedbackPanel room={room} user={user} />}
 
       <SettingModal room={room} />
     </>
