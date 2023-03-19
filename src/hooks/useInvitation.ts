@@ -11,7 +11,7 @@ export const useInvitation = (roomId: string) => {
   const invitationUrl = useMemo(() => {
     if (!token) return token;
 
-    return `${new URL(location.href).origin}/app/rooms/${roomId}/invitation?token=${token}`;
+    return `${new URL(location.href).origin}/app/room/${roomId}/invitation?token=${token}`;
   }, [roomId, token]);
   const copyUrl = () => {
     if (!invitationUrl) return;

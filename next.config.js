@@ -1,8 +1,12 @@
+const withInterceptStdout = require('next-intercept-stdout');
+
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
-  pageExtensions: ['page.tsx'],
+const nextConfig = {
+  pageExtensions: ['page.tsx', 'api.ts'],
   swcMinify: true,
   output: 'standalone',
 };
+
+module.exports = withInterceptStdout(nextConfig, (text) => (text.includes('Duplicate atom key') ? '' : text));

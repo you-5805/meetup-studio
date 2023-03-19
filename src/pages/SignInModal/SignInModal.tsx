@@ -9,13 +9,13 @@ import Image from 'next/image';
 import { setDoc, doc } from 'firebase/firestore';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
-import type { AuthProvider } from 'firebase/auth';
+import type { AuthProvider, User } from 'firebase/auth';
 
 const github = new GithubAuthProvider();
 const google = new GoogleAuthProvider();
 
 type Props = {
-  afterSignIn?: null | (() => void);
+  afterSignIn?: null | ((user: User) => void);
 };
 
 export const SignInModal = ({ afterSignIn }: Props) => {
@@ -39,7 +39,7 @@ export const SignInModal = ({ afterSignIn }: Props) => {
       if (afterSignIn === undefined) {
         router.push(pagesPath.app.$url().pathname);
       } else {
-        afterSignIn();
+        afterSignIn(user);
       }
     } catch (err) {
       if (
