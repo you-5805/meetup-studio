@@ -3,6 +3,7 @@ import { staticPath } from '@/lib/$path';
 import { useInvitation } from '@/hooks/useInvitation';
 import { useDeleteEvent } from '@/hooks/useDeleteEvent';
 import { Tooltip } from '@/components/Tooltip/Tooltip';
+import { useUser } from '@/hooks/useUser';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { useRecoilState } from 'recoil';
@@ -17,6 +18,8 @@ export const SettingModal = ({ room }: Props) => {
   const [isOpen, setIsOpen] = useRecoilState(isSettingModalOpenedState);
   const { invitationUrl, hasCopied, copyUrl } = useInvitation(room.id);
   const { deleteEvent } = useDeleteEvent(room.id);
+  const { user } = useUser();
+  const isOwner = room.owner.uid === user?.uid;
 
   return (
     <RadixDialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -89,17 +92,19 @@ export const SettingModal = ({ room }: Props) => {
 
           <hr />
 
-          <div className='grid grid-cols-1 gap-4'>
-            <h2 className='text-xl font-bold'>Advanced</h2>
+          {isOwner ? (
+            <div className='grid grid-cols-1 gap-4'>
+              <h2 className='text-xl font-bold'>Advanced</h2>
 
-            <button
-              type='button'
-              className='md:text-md animate-appear-slow rounded border border-red-500 bg-white py-1.5 px-2 text-sm font-bold text-red-500 transition-colors hover:bg-gray-50 hover:text-red-400 md:py-2 md:px-4'
-              onClick={deleteEvent}
-            >
-              イベントを削除
-            </button>
-          </div>
+              <button
+                type='button'
+                className='md:text-md animate-appear-slow rounded border border-red-500 bg-white py-1.5 px-2 text-sm font-bold text-red-500 transition-colors hover:bg-gray-50 hover:text-red-400 md:py-2 md:px-4'
+                onClick={deleteEvent}
+              >
+                イベントを削除
+              </button>
+            </div>
+          ) : null}
         </RadixDialog.Content>
       </RadixDialog.Portal>
     </RadixDialog.Root>
