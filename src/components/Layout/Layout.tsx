@@ -60,7 +60,7 @@ export const Layout = ({ children }: Props) => {
       </header>
       <main className='min-h-[calc(100vh-200px)]'>{children}</main>
       <footer className='flex flex-col items-center gap-4 bg-gray-200 pt-8 pb-20'>
-        <div className='flex items-center justify-center gap-8'>
+        <div className='flex items-center justify-center gap-6'>
           <Link href={pagesPath.terms.$url()}>
             <span className='hover:text-gray-600 hover:underline'>利用規約</span>
           </Link>
