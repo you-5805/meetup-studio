@@ -115,7 +115,7 @@ export const CommentCard = ({ room }: Props) => {
           </div>
         ) : (
           comments.map(({ id, author, content, createdAt }) => (
-            <div key={id} className='flex flex-col items-start gap-2'>
+            <div key={id} className='flex flex-col items-start gap-1.5'>
               <div className='flex w-full items-center justify-between'>
                 <div className='flex items-center gap-2'>
                   {author.img !== null ? (
