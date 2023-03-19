@@ -2,18 +2,16 @@
 
 import { CreateRoom } from './CreateRoom/CreateRoom';
 import { Rooms } from './Rooms/Rooms';
-import { Layout } from '@/components/Layout/Layout';
+import { Seo } from './seo';
 import { useUser } from '@/hooks/useUser';
-import Head from 'next/head';
+import { Layout } from '@/components/Layout/Layout';
 
 export default function Page() {
   const { user } = useUser({ required: true });
 
   return (
     <>
-      <Head>
-        <title>イベントの作成 | Meetup Studio</title>
-      </Head>
+      <Seo />
       <Layout>
         <div className='flex min-h-[calc(100vh-200px)] flex-col items-center gap-16 bg-gray-100 px-4 py-20'>
           <CreateRoom user={user} />

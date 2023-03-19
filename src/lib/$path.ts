@@ -28,7 +28,8 @@ export const staticPath = {
     github_svg: '/img/github.svg',
     google_svg: '/img/google.svg',
     icon_svg: '/img/icon.svg',
-    logo_png: '/img/logo.png'
+    logo_png: '/img/logo.png',
+    og_png: '/img/og.png'
   }
 } as const
 
