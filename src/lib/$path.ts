@@ -35,7 +35,10 @@ export const staticPath = {
     google_svg: '/img/google.svg',
     icon_svg: '/img/icon.svg',
     logo_png: '/img/logo.png',
-    og_png: '/img/og.png'
+    og_png: '/img/og.png',
+    service_1_png: '/img/service_1.png',
+    service_2_png: '/img/service_2.png',
+    service_3_png: '/img/service_3.png'
   }
 } as const
 
