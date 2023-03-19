@@ -59,19 +59,19 @@ export const Layout = ({ children }: Props) => {
         ) : null}
       </header>
       <main className='min-h-[calc(100vh-200px)]'>{children}</main>
-      <footer className='flex flex-col items-center gap-4 bg-gray-200 pt-8 pb-20'>
-        <div className='flex items-center justify-center gap-8'>
+      <footer className='flex flex-col items-center gap-4 bg-gray-200 px-3 pt-8 pb-20'>
+        <div className='flex flex-wrap items-center justify-center gap-6'>
           <Link href={pagesPath.terms.$url()}>
-            <span className='hover:text-gray-600 hover:underline'>利用規約</span>
+            <span className='whitespace-nowrap hover:text-gray-600 hover:underline'>利用規約</span>
           </Link>
           <Link href={pagesPath.privacy_policy.$url()}>
-            <span className='hover:text-gray-600 hover:underline'>プライバシーポリシー</span>
+            <span className='whitespace-nowrap hover:text-gray-600 hover:underline'>プライバシーポリシー</span>
           </Link>
           <a
             href='https://twitter.com/yoiwamoto'
             target='_blank'
             rel='noreferrer'
-            className='hover:text-gray-600 hover:underline'
+            className='whitespace-nowrap hover:text-gray-600 hover:underline'
           >
             開発者Twitter
           </a>

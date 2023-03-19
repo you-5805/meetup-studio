@@ -1,5 +1,3 @@
-'use client';
-
 import { CreateRoom } from './CreateRoom/CreateRoom';
 import { Rooms } from './Rooms/Rooms';
 import { Seo } from './seo';
