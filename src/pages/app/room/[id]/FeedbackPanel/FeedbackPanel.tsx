@@ -2,8 +2,8 @@ import { ReactionPanel } from '../ReactionPanel/ReactionPanel';
 import { Layout } from '@/components/Layout/Layout';
 import { usePostComment } from '@/hooks/usePostComment';
 import { SignInModal } from '@/pages/SignInModal/SignInModal';
-import { PaperAirplaneIcon, CheckIcon } from '@heroicons/react/24/outline';
-import { useId } from 'react';
+import { ChatBubbleLeftEllipsisIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { useEffect, useId, useState } from 'react';
 import type { User } from 'firebase/auth';
 import type { Room } from '@/types/Room';
 
@@ -12,9 +12,25 @@ type Props = {
   user: User | null;
 };
 
+const PLACEHOLDERS = [
+  'わいわい',
+  'そこもうちょっと詳しく聞きたいです！',
+  'よろしくお願いします🙌',
+  '88888888',
+  'これはいい話',
+  '完全に理解した',
+];
+
 export const FeedbackPanel = ({ room, user }: Props) => {
   const { comment, onChangeComment, isPosting, hasPosted, onSubmit } = usePostComment({ roomId: room.id, user });
   const helpId = useId();
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDERS.length), 5000);
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, []);
 
   return (
     <Layout>
@@ -30,8 +46,8 @@ export const FeedbackPanel = ({ room, user }: Props) => {
         >
           <textarea
             rows={3}
-            placeholder='コメントを入力'
-            className='w-80 rounded-lg border p-2'
+            placeholder={PLACEHOLDERS[placeholderIndex]}
+            className='w-80 rounded-lg border p-3'
             value={comment}
             onChange={onChangeComment}
             onKeyDown={(e) => e.metaKey && e.key === 'Enter' && onSubmit()}
@@ -40,15 +56,15 @@ export const FeedbackPanel = ({ room, user }: Props) => {
 
           <button
             type='submit'
-            aria-label='送信'
+            aria-label='コメント'
             disabled={isPosting}
             className='flex w-full items-center justify-center gap-2 rounded-lg bg-orange-500 p-2 hover:bg-orange-400 disabled:cursor-not-allowed disabled:bg-orange-300'
           >
-            <span className='text-lg font-bold text-white'>送信</span>
+            <span className='text-lg font-bold text-white'>コメント</span>
             {hasPosted ? (
               <CheckIcon aria-hidden='true' color='white' className='h-6 w-6' />
             ) : (
-              <PaperAirplaneIcon aria-hidden='true' color='white' className='h-6 w-6' />
+              <ChatBubbleLeftEllipsisIcon aria-hidden='true' color='white' className='h-6 w-6' />
             )}
           </button>
 
