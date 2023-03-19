@@ -48,7 +48,7 @@ export default function Page() {
               <h1 className='text-center text-xl font-bold'>イベントの作成</h1>
 
               <label className='flex flex-col gap-1'>
-                <span className='font-bold'>イベント名</span>
+                <span className='font-bold'>タイトル</span>
                 <input
                   type='text'
                   value={roomName}
