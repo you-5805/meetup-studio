@@ -119,6 +119,10 @@ export const SignInModal = ({ afterSignIn }: Props) => {
               <Link href={pagesPath.terms.$url()} className='text-gray-700 underline' target='_blank'>
                 利用規約
               </Link>
+              および
+              <Link href={pagesPath.privacy_policy.$url()} className='text-gray-700 underline' target='_blank'>
+                プライバシーポリシー
+              </Link>
               に同意の上、サインインしてください。
             </p>
           </div>

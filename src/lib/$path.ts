@@ -13,6 +13,9 @@ export const pagesPath = {
     },
     $url: (url?: { hash?: string }) => ({ pathname: '/app' as const, hash: url?.hash })
   },
+  "privacy_policy": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/privacy-policy' as const, hash: url?.hash })
+  },
   "terms": {
     $url: (url?: { hash?: string }) => ({ pathname: '/terms' as const, hash: url?.hash })
   },
