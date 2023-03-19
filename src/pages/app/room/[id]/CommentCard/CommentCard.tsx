@@ -1,4 +1,3 @@
-import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { firestore } from '@/lib/firebase';
 import { convertComment } from '@/lib/convertComment';
 import { getAgo } from '@/lib/formatDate';
@@ -119,9 +118,7 @@ export const CommentCard = ({ room }: Props) => {
               <div className='flex w-full items-center justify-between'>
                 <div className='flex items-center gap-2'>
                   {author.img !== null ? (
-                    <Tooltip label={author.name}>
-                      <img height={20} width={20} src={author.img} alt='' className='rounded-full' />
-                    </Tooltip>
+                    <img height={20} width={20} src={author.img} alt='' className='rounded-full' />
                   ) : (
                     <div className='flex h-6 w-6 items-center justify-center rounded-full bg-orange-500'>
                       <UserIcon color='white' className='h-4 w-4' />
