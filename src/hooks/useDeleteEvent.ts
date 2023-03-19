@@ -23,10 +23,13 @@ export const useDeleteEvent = (roomId: string) => {
       )
     ) {
       setGlobalLoading(true);
-      await deleteDoc(doc(firestore, 'rooms', roomId));
-      router.push(pagesPath.app.$url().pathname);
-      closeModal();
-      setGlobalLoading(false);
+      try {
+        await deleteDoc(doc(firestore, 'rooms', roomId));
+        router.push(pagesPath.app.$url().pathname);
+        closeModal();
+      } finally {
+        setGlobalLoading(false);
+      }
     }
   };
 
