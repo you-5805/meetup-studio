@@ -1,5 +1,5 @@
 import { firestore } from '@/lib/firebase';
-import { anonUserNameState } from '@/states/global';
+import { anonUserBgColorState, anonUserNameState } from '@/states/global';
 import { addDoc, collection } from 'firebase/firestore';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -16,6 +16,7 @@ export const usePostComment = ({ roomId, user }: Args) => {
   const [isPosting, setIsPosting] = useState(false);
   const [hasPosted, setHasPosted] = useState(false);
   const anonUserName = useRecoilValue(anonUserNameState);
+  const anonUserBgColor = useRecoilValue(anonUserBgColorState);
 
   const onChangeComment = (({ target: { value } }) =>
     setComment(value)) satisfies ChangeEventHandler<HTMLTextAreaElement>;
@@ -30,7 +31,7 @@ export const usePostComment = ({ roomId, user }: Args) => {
         author: {
           id: user?.uid ?? null,
           name: user?.displayName ?? anonUserName,
-          img: user?.photoURL ?? null,
+          img: user?.photoURL ?? anonUserBgColor,
         },
         createdAt: new Date(),
       });

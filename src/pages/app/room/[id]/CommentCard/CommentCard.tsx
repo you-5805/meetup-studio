@@ -1,8 +1,9 @@
+import { Avatar } from '../Avatar/Avatar';
 import { firestore } from '@/lib/firebase';
 import { convertComment } from '@/lib/convertComment';
 import { getAgo } from '@/lib/formatDate';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDownIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ArrowDownIcon } from '@heroicons/react/24/outline';
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import type { Comment } from '@/types/Comment';
 import type { Room } from '@/types/Room';
@@ -98,7 +99,7 @@ export const CommentCard = ({ room }: Props) => {
     <div className='relative'>
       <div
         ref={commentCardRef}
-        className='relative flex h-[calc(100vh-72px)] flex-col gap-6 overflow-auto scroll-smooth rounded-lg bg-white p-4 shadow-lg'
+        className='relative flex h-[calc(100vh-72px)] flex-col gap-8 overflow-auto scroll-smooth rounded-lg bg-white p-4 shadow-lg'
       >
         {comments.length === 0 ? (
           <div className='flex h-full flex-col items-center justify-center gap-4 text-center leading-loose'>
@@ -115,13 +116,7 @@ export const CommentCard = ({ room }: Props) => {
             <div key={id} className='flex flex-col items-start gap-1.5'>
               <div className='flex w-full items-center justify-between'>
                 <div className='flex items-center gap-2'>
-                  {author.img !== null ? (
-                    <img height={20} width={20} src={author.img} alt='' className='rounded-full' />
-                  ) : (
-                    <div className='flex h-6 w-6 items-center justify-center rounded-full bg-orange-500'>
-                      <UserIcon color='white' className='h-4 w-4' />
-                    </div>
-                  )}
+                  {/* <Avatar img={author.img} /> */}
 
                   <span className='whitespace-nowrap'>{author.name}</span>
                 </div>
@@ -129,7 +124,7 @@ export const CommentCard = ({ room }: Props) => {
                   {getAgo(createdAt)}
                 </time>
               </div>
-              <p className='whitespace-pre-wrap text-sm md:text-lg'>{content}</p>
+              <p className='whitespace-pre-wrap md:text-lg'>{content}</p>
             </div>
           ))
         )}

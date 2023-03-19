@@ -46,6 +46,7 @@ export const FeedbackPanel = ({ room, user }: Props) => {
         >
           <textarea
             rows={3}
+            autoFocus
             placeholder={PLACEHOLDERS[placeholderIndex]}
             className='w-80 rounded-lg border p-3'
             value={comment}

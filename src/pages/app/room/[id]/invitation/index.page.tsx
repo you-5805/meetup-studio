@@ -5,8 +5,10 @@ import { Button } from '@/components/Button/Button';
 import { isSignInModalOpenedState } from '@/states/global';
 import { useRoom } from '@/hooks/useRoom';
 import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
+import { useUser } from '@/hooks/useUser';
 import { useRecoilCallback } from 'recoil';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import type { User } from 'firebase/auth';
 
 export { getServerSideProps };
@@ -15,6 +17,8 @@ export default function Page() {
   const router = useRouter();
 
   const { room } = useRoom();
+
+  const { user } = useUser();
 
   const afterSignIn = async (user: User) => {
     if (room === null || room === 'loading') return;
@@ -49,6 +53,16 @@ export default function Page() {
         set(isSignInModalOpenedState, true),
     []
   );
+
+  useEffect(() => {
+    if (
+      room !== null &&
+      room !== 'loading' &&
+      (room.owner.uid === user?.uid || room.cohostIds.includes(user?.uid ?? ''))
+    ) {
+      router.push(`/app/room/${room.id}`);
+    }
+  }, [room, router, user?.uid]);
 
   return (
     <Layout>

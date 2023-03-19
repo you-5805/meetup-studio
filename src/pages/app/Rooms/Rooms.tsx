@@ -1,8 +1,12 @@
 import { useRooms } from '@/hooks/useRooms';
 import { pagesPath } from '@/lib/$path';
 import { getAgo } from '@/lib/formatDate';
+import { isScreenLoadingState } from '@/states/global';
 import { ClockIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
 import type { User } from 'firebase/auth';
 
 type Props = {
@@ -10,7 +14,17 @@ type Props = {
 };
 
 export const Rooms = ({ user }: Props) => {
+  const router = useRouter();
   const { rooms } = useRooms({ user });
+  const setIsLoading = useSetRecoilState(isScreenLoadingState);
+
+  const onClickRoomLink = () => setIsLoading(true);
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', () => {
+      setIsLoading(false);
+    });
+  }, [router.events, setIsLoading]);
 
   if (!rooms?.length) return null;
 
@@ -23,6 +37,7 @@ export const Rooms = ({ user }: Props) => {
             <Link
               href={pagesPath.app.room._id(room.id).$url()}
               className='relative flex w-96 flex-col items-start gap-6 rounded-lg bg-white py-3 px-4 shadow-lg transition-all hover:bg-gray-50 hover:shadow-md'
+              onClick={onClickRoomLink}
             >
               {room.owner.uid !== user?.uid ? (
                 <div className='absolute right-4 top-3 rounded-lg border border-orange-500 p-1 px-2 text-xs text-orange-500'>

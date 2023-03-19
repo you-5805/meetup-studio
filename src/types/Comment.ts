@@ -4,7 +4,7 @@ export type CommentDocument = {
   author: {
     id: string | null;
     name: string;
-    img: string | null;
+    img: string;
   };
   content: string;
   createdAt: Timestamp;
