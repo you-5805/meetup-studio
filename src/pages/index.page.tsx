@@ -39,7 +39,7 @@ export default function Page() {
               <span className='whitespace-nowrap leading-normal'>もっとインタラクティブに</span>
             </h1>
             <div className='col-span-1'>
-              <Image src={cafe} alt='' />
+              <Image src={cafe} alt='カフェで人々が雑談している風景' />
             </div>
           </div>
 
@@ -63,7 +63,11 @@ export default function Page() {
           </div>
 
           <div className='p-2 md:p-8'>
-            <Image src={serviceImg1} alt='' className='shadow-lg' />
+            <Image
+              src={serviceImg1}
+              alt='Meetup Studio での画面の様子。登壇資料と、左下に参加者用の QR コード、右側に参加者からのコメントと、画面全体に絵文字によるリアクションンが表示されている。'
+              className='shadow-lg'
+            />
           </div>
         </section>
 
@@ -71,7 +75,12 @@ export default function Page() {
 
         <section className='flex flex-col-reverse gap-8 lg:grid lg:grid-cols-2'>
           <div className='flex justify-center p-2 md:p-8'>
-            <Image src={serviceImg2} alt='' width={200} className='shadow-lg' />
+            <Image
+              src={serviceImg2}
+              alt='参加者の操作画面。タイトル、コメントの入力フォーム、絵文字でのリアクション UI のみが表示されている。絵文字はメジャーなものが9つあり、肌の色が関わるものは調整機能がある。'
+              width={200}
+              className='shadow-lg'
+            />
           </div>
 
           <div className='flex flex-col items-start justify-center gap-4'>
@@ -95,7 +104,12 @@ export default function Page() {
           </div>
 
           <div className='flex justify-center p-2 md:p-8'>
-            <Image src={serviceImg3} alt='' width={360} className='shadow-lg' />
+            <Image
+              src={serviceImg3}
+              alt='イベントの設定モーダル画面。タイトルにイベントの設定とあり、運営メンバー（2人）が表示されている。招待用 URL がコピーできるようになっている。'
+              width={360}
+              className='shadow-lg'
+            />
           </div>
         </section>
 
