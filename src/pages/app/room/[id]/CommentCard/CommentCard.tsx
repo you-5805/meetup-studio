@@ -116,7 +116,7 @@ export const CommentCard = ({ room }: Props) => {
             <div key={id} className='flex flex-col items-start gap-1.5'>
               <div className='flex w-full items-center justify-between'>
                 <div className='flex items-center gap-2'>
-                  {/* <Avatar img={author.img} /> */}
+                  <Avatar img={author.img} />
 
                   <span className='whitespace-nowrap'>{author.name}</span>
                 </div>
