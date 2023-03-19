@@ -31,6 +31,8 @@ const handler = (async (req, res) => {
   if (token !== value) return res.status(401).json({ error: 'Invalid token' });
 
   const room = convertRoom(await firestore.collection('rooms').doc(roomId).get()) as Room;
+  // 既に招待を承諾済の時
+  if (room.cohostIds.includes(user.uid)) return res.status(200).end();
 
   await firestore
     .collection('rooms')
