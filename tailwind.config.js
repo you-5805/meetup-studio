@@ -19,7 +19,7 @@ module.exports = {
         },
         slidein: {
           '0%': {
-            bottom: 0,
+            bottom: '5vh',
             opacity: 1,
           },
           '50%': {
