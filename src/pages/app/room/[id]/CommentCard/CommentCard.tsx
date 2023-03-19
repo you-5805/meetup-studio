@@ -130,10 +130,7 @@ export const CommentCard = ({ room }: Props) => {
                   {getAgo(createdAt)}
                 </time>
               </div>
-              <p
-                className='whitespace-pre-wrap text-sm md:text-lg'
-                dangerouslySetInnerHTML={{ __html: replaceLinks(content) }}
-              />
+              <p className='whitespace-pre-wrap text-sm md:text-lg'>{content}</p>
             </div>
           ))
         )}
