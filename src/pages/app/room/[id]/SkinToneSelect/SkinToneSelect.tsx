@@ -15,12 +15,12 @@ export const SkinToneSelect = ({ skinTone, setSkinTone }: Props) => {
       <RadixSelect.Trigger>
         <Tooltip label='肌の色 | Skin tone'>
           <RadixSelect.Value>
-            <div className='flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg'>
+            <div className='flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white'>
               {skinTone === '' ? (
                 <div className='h-9 w-9 rounded-full bg-yellow-400' />
               ) : (
                 <div className='relative h-9 w-9 overflow-hidden rounded-full'>
-                  <span className='absolute -top-2 -right-2 text-7xl' dangerouslySetInnerHTML={{ __html: skinTone }} />
+                  <span className='absolute -top-2 -right-3 text-6xl' dangerouslySetInnerHTML={{ __html: skinTone }} />
                 </div>
               )}
             </div>
