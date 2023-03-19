@@ -23,8 +23,8 @@ export const SignInModal = () => {
 
   const signIn = async (provider: AuthProvider) => {
     try {
-      const { user } = await signInWithPopup(auth, provider);
       setLoading(true);
+      const { user } = await signInWithPopup(auth, provider);
       await setDoc(doc(firestore, 'users', user.uid), {
         uid: user.uid,
         name: user.displayName,
