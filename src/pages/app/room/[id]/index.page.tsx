@@ -20,7 +20,7 @@ export default function Page({ room }: PageProps) {
     <>
       <Seo eventTitle={room.name} />
 
-      {user?.uid === room.owner.uid || room.cohostIds.includes(user?.uid) ? (
+      {user?.uid === room.owner.uid || (user && room.cohostIds.includes(user?.uid)) ? (
         <Studio room={room} />
       ) : (
         <FeedbackPanel room={room} user={user} />
