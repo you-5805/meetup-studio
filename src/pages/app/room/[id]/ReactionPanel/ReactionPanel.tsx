@@ -17,8 +17,10 @@ export const ReactionPanel = ({ roomId, user }: Props) => {
   const [skinTone, setSkinTone] = useState<SkinTone>('');
 
   return (
-    <div className='flex flex-col items-center gap-4 pb-12'>
-      <SkinToneSelect skinTone={skinTone} setSkinTone={setSkinTone} />
+    <div className='flex flex-col items-center pb-12'>
+      <div className='mb-4'>
+        <SkinToneSelect skinTone={skinTone} setSkinTone={setSkinTone} />
+      </div>
       <div className='grid grid-cols-3 gap-4 text-5xl'>
         {[
           {
