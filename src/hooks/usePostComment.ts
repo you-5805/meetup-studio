@@ -1,7 +1,8 @@
 import { firestore } from '@/lib/firebase';
+import { anonUserNameState } from '@/states/global';
 import { addDoc, collection } from 'firebase/firestore';
-import { nanoid } from 'nanoid';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import type { ChangeEventHandler } from 'react';
 import type { User } from 'firebase/auth';
 
@@ -14,7 +15,7 @@ export const usePostComment = ({ roomId, user }: Args) => {
   const [comment, setComment] = useState('');
   const [isPosting, setIsPosting] = useState(false);
   const [hasPosted, setHasPosted] = useState(false);
-  const anonUserName = useMemo(() => `user_${nanoid(4)}`, []);
+  const anonUserName = useRecoilValue(anonUserNameState);
 
   const onChangeComment = (({ target: { value } }) =>
     setComment(value)) satisfies ChangeEventHandler<HTMLTextAreaElement>;

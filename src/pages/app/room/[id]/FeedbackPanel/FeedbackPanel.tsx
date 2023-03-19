@@ -1,3 +1,4 @@
+import { ReactionPanel } from '../ReactionPanel/ReactionPanel';
 import { Layout } from '@/components/Layout/Layout';
 import { usePostComment } from '@/hooks/usePostComment';
 import { SignInModal } from '@/pages/SignInModal/SignInModal';
@@ -17,7 +18,7 @@ export const FeedbackPanel = ({ room, user }: Props) => {
 
   return (
     <Layout>
-      <div className='flex flex-col items-center gap-12'>
+      <div className='flex flex-col items-center gap-8'>
         <h1 className='text-center text-2xl font-bold'>{room.name}</h1>
 
         <form
@@ -58,7 +59,7 @@ export const FeedbackPanel = ({ room, user }: Props) => {
           </p>
         </form>
 
-        <p className='px-4'>このページはコメント送信専用で、他の人が投稿したコメントなどは表示されません</p>
+        <ReactionPanel roomId={room.id} user={user} />
       </div>
 
       <SignInModal afterSignIn={null} />

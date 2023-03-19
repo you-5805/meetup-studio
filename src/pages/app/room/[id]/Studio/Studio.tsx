@@ -2,6 +2,7 @@ import { CopyLinkButton } from '../CopyLinkButton/CopyLinkButton';
 import { QrImage } from '../QrImage/QrImage';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { isSettingModalOpenedState } from '../state';
+import { ReactionField } from '../ReactionFIeld/ReactionField';
 import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { useDisplayScreen } from '@/hooks/useDisplayScreen';
 import { useUser } from '@/hooks/useUser';
@@ -32,6 +33,8 @@ export const Studio = ({ room }: Props) => {
 
   return (
     <>
+      <ReactionField roomId={room.id} />
+
       <div className={cn('relative grid h-[calc(100vh-56px)] grid-cols-3 gap-3 bg-gray-100 p-2 lg:grid-cols-4', {})}>
         <div className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center lg:col-span-3'>
           <video
@@ -63,13 +66,13 @@ export const Studio = ({ room }: Props) => {
           {isDisplaying ? (
             <Tooltip label='画面共有を停止'>
               <button type='button' aria-label='画面共有を停止' onClick={stopDisplaying}>
-                <NoSymbolIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
+                <NoSymbolIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-9 lg:w-9' />
               </button>
             </Tooltip>
           ) : (
             <Tooltip label='画面共有を開始'>
               <button type='button' onClick={startDisplaying} aria-label='画面共有を開始'>
-                <TvIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
+                <TvIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-9 lg:w-9' />
               </button>
             </Tooltip>
           )}
@@ -78,7 +81,7 @@ export const Studio = ({ room }: Props) => {
 
           <Tooltip label='設定'>
             <button type='button' aria-label='設定モーダルを開く' onClick={openSettingModal}>
-              <Cog6ToothIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-10 lg:w-10' />
+              <Cog6ToothIcon color='white' className='h-8 w-8 hover:opacity-80 lg:h-9 lg:w-9' />
             </button>
           </Tooltip>
 
@@ -86,7 +89,7 @@ export const Studio = ({ room }: Props) => {
             <button type='button' aria-label='投票 (comming soon)' onClick={() => alert('未実装の機能です')}>
               <ChatBubbleLeftEllipsisIcon
                 color='gray'
-                className='h-8 w-8 cursor-not-allowed hover:opacity-80 lg:h-10 lg:w-10'
+                className='h-8 w-8 cursor-not-allowed hover:opacity-80 lg:h-9 lg:w-9'
               />
             </button>
           </Tooltip>
