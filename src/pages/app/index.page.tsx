@@ -15,6 +15,8 @@ export default function Page() {
         <div className='flex min-h-[calc(100vh-200px)] flex-col items-center gap-16 bg-gray-100 px-4 py-20'>
           <CreateRoom user={user} />
 
+          <p>イベントの投影画面は PC で表示することを想定されているため、スマートフォンでは表示できません。</p>
+
           <Rooms user={user} />
         </div>
       </Layout>
