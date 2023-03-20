@@ -1,17 +1,15 @@
+import { pagesPath } from '@/lib/$path';
 import { auth, firestore } from '@/lib/firebase';
-import { pagesPath, staticPath } from '@/lib/$path';
 import { isScreenLoadingState, isSignInModalOpenedState } from '@/states/global';
-import Link from 'next/link';
-import * as RadixDialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import Image from 'next/image';
-import { setDoc, doc } from 'firebase/firestore';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import * as RadixDialog from '@radix-ui/react-dialog';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import type { AuthProvider, User } from 'firebase/auth';
 
-const github = new GithubAuthProvider();
 const google = new GoogleAuthProvider();
 
 type Props = {
@@ -81,14 +79,6 @@ export const SignInModal = ({ afterSignIn }: Props) => {
             イベントを開催するには SNS でのサインインが必要です。
           </RadixDialog.Description>
           <div className='flex flex-col items-center gap-4'>
-            <button
-              onClick={() => signIn(github)}
-              className='flex w-full max-w-md items-center justify-center gap-3 rounded bg-[#242A2F] p-2 font-bold text-white transition-opacity hover:opacity-80'
-            >
-              <Image src={staticPath.img.github_svg} height={20} width={20} alt='' />
-              Login with GitHub
-            </button>
-
             <button
               onClick={() => signIn(google)}
               className='flex w-full max-w-md items-center justify-center gap-3 rounded border border-gray-200 bg-white p-2 font-bold text-[#000000] shadow-md transition-colors hover:bg-gray-100'
