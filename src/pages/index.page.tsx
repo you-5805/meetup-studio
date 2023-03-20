@@ -58,8 +58,9 @@ export default function Page() {
             <h2 className='text-2xl font-bold sm:text-3xl'>Meetup Studio とは</h2>
             <p>
               Meetup
-              Studioは、オフライン勉強会において、参加者や登壇者がより簡単にコミュニケーションを取れるようにするためのツールです。QRコードを読み取るだけで、わずか数秒で参加が可能です。
+              Studioは、オフライン勉強会において、参加者や登壇者がより簡単にコミュニケーションを取れるようにするためのツールです。
             </p>
+            <p>配信画面を投影し、表示されるQRコードを読み取れば、わずか数秒でセッションに参加が可能です。</p>
           </div>
 
           <div className='p-2 md:p-8'>
