@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@heroicons/react': ^2.0.16
-  '@hookform/resolvers': ^2.9.11
+  '@hookform/resolvers': ^3.0.0
   '@radix-ui/react-dialog': ^1.0.3
   '@radix-ui/react-scroll-area': ^1.0.3
   '@radix-ui/react-select': ^1.2.1
@@ -52,7 +52,7 @@ specifiers:
 
 dependencies:
   '@heroicons/react': 2.0.16_react@18.2.0
-  '@hookform/resolvers': 2.9.11_react-hook-form@7.43.7
+  '@hookform/resolvers': 3.0.0_react-hook-form@7.43.7
   '@radix-ui/react-dialog': 1.0.3_5ndqzdd6t4rivxsukjv3i3ak2q
   '@radix-ui/react-scroll-area': 1.0.3_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-select': 1.2.1_5ndqzdd6t4rivxsukjv3i3ak2q
@@ -983,8 +983,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@hookform/resolvers/2.9.11_react-hook-form@7.43.7:
-    resolution: {integrity: sha512-bA3aZ79UgcHj7tFV7RlgThzwSSHZgvfbt2wprldRkYBcMopdMvHyO17Wwp/twcJasNFischFfS7oz8Katz8DdQ==}
+  /@hookform/resolvers/3.0.0_react-hook-form@7.43.7:
+    resolution: {integrity: sha512-SQPefakODpyq25b/phHXDKCdRrEfPcCXV7B4nAa139wE1DxufYbbNAjeo0T04ZXBokRxZ+wD8iA1kkVMa3QwjQ==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
