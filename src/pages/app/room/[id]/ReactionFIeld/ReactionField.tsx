@@ -52,7 +52,7 @@ export const ReactionField = ({ roomId }: Props) => {
       {reactions.map(({ id, content, position, duration }) => (
         <div
           key={id}
-          className='reaction absolute bottom-0 z-10 animate-slidein text-5xl'
+          className='reaction absolute bottom-0 z-10 animate-slidein text-6xl xl:text-7xl'
           style={{
             left: position,
             animationFillMode: 'forwards',
