@@ -9,10 +9,17 @@ import { useUser } from '@/hooks/useUser';
 import { cn } from '@/lib/cn';
 import { pagesPath } from '@/lib/$path';
 import logo from 'public/img/logo.png';
-import { NoSymbolIcon, TvIcon, Cog6ToothIcon, ChatBubbleLeftEllipsisIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
+import {
+  NoSymbolIcon,
+  TvIcon,
+  Cog6ToothIcon,
+  ArrowsPointingOutIcon,
+  ArrowsPointingInIcon,
+} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilCallback } from 'recoil';
+import { useState } from 'react';
 import type { Room } from '@/types/Room';
 
 type Props = {
@@ -23,6 +30,16 @@ export const Studio = ({ room }: Props) => {
   useUser({ required: true });
 
   const { videoRef, isDisplaying, startDisplaying, stopDisplaying } = useDisplayScreen();
+
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const getIntoFullScreen = () => {
+    setIsFullScreen(true);
+    document.body.requestFullscreen();
+  };
+  const exitFullScreen = () => {
+    setIsFullScreen(false);
+    document.exitFullscreen();
+  };
 
   const openSettingModal = useRecoilCallback(
     ({ set }) =>
@@ -85,16 +102,16 @@ export const Studio = ({ room }: Props) => {
             </button>
           </Tooltip>
 
-          <Tooltip label='投票 (comming soon)'>
-            <button type='button' aria-label='投票 (comming soon)' onClick={() => alert('未実装の機能です')}>
-              <ChatBubbleLeftEllipsisIcon color='gray' className='h-8 w-8 cursor-not-allowed hover:opacity-80' />
-            </button>
-          </Tooltip>
-
           <Tooltip label='全画面表示'>
-            <button type='button' aria-label='全画面表示' onClick={() => document.body.requestFullscreen()}>
-              <ComputerDesktopIcon color='white' className='h-8 w-8 hover:opacity-80' />
-            </button>
+            {isFullScreen ? (
+              <button type='button' aria-label='全画面表示を終了' onClick={exitFullScreen}>
+                <ArrowsPointingInIcon color='white' className='h-8 w-8 hover:opacity-80' />
+              </button>
+            ) : (
+              <button type='button' onClick={getIntoFullScreen} aria-label='全画面表示を開始'>
+                <ArrowsPointingOutIcon color='white' className='h-8 w-8 hover:opacity-80' />
+              </button>
+            )}
           </Tooltip>
         </div>
 
