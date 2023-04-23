@@ -9,7 +9,7 @@ import { useUser } from '@/hooks/useUser';
 import { cn } from '@/lib/cn';
 import { pagesPath } from '@/lib/$path';
 import logo from 'public/img/logo.png';
-import { NoSymbolIcon, TvIcon, Cog6ToothIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline';
+import { NoSymbolIcon, TvIcon, Cog6ToothIcon, ChatBubbleLeftEllipsisIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilCallback } from 'recoil';
@@ -88,6 +88,12 @@ export const Studio = ({ room }: Props) => {
           <Tooltip label='投票 (comming soon)'>
             <button type='button' aria-label='投票 (comming soon)' onClick={() => alert('未実装の機能です')}>
               <ChatBubbleLeftEllipsisIcon color='gray' className='h-8 w-8 cursor-not-allowed hover:opacity-80' />
+            </button>
+          </Tooltip>
+
+          <Tooltip label='全画面表示'>
+            <button type='button' aria-label='全画面表示' onClick={() => document.body.requestFullscreen()}>
+              <ComputerDesktopIcon color='white' className='h-8 w-8 hover:opacity-80' />
             </button>
           </Tooltip>
         </div>
