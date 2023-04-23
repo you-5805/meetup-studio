@@ -16,6 +16,14 @@ export const pagesPath = {
   "privacy_policy": {
     $url: (url?: { hash?: string }) => ({ pathname: '/privacy-policy' as const, hash: url?.hash })
   },
+  "rooms": {
+    _id: (id: string | number) => ({
+      "invitation": {
+        $url: (url?: { hash?: string }) => ({ pathname: '/rooms/[id]/invitation' as const, query: { id }, hash: url?.hash })
+      },
+      $url: (url?: { hash?: string }) => ({ pathname: '/rooms/[id]' as const, query: { id }, hash: url?.hash })
+    })
+  },
   "terms": {
     $url: (url?: { hash?: string }) => ({ pathname: '/terms' as const, hash: url?.hash })
   },
