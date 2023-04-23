@@ -16,7 +16,6 @@ export default function Page({ room }: PageProps) {
 
   useEffect(() => {
     const ids = JSON.parse(localStorage.getItem('roomIds') ?? '[]') as string[];
-    console.log({ ids });
     setIsOwner(ids.includes(room.id));
   }, [room.id]);
 

@@ -34,7 +34,6 @@ export const ReactionField = ({ roomId }: Props) => {
           position: `${Math.random() * 90}vw`,
           duration: `${Math.random() * 2 + 1}s`,
         }));
-      console.log({ newReactions });
       setReactions((prev) => [...prev, ...newReactions]);
     });
 

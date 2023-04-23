@@ -9,7 +9,6 @@ type PageProps = {
 };
 
 export default async function Page({ params: { id } }: PageProps) {
-  console.log({ id });
   const documentSnapshot = await firestore.collection('rooms').doc(id).get();
   if (!documentSnapshot.exists) notFound();
 
