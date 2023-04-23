@@ -65,7 +65,7 @@ export const CommentCard = ({ room }: Props) => {
     return () => {
       card.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, []);
 
   // shouldAutoScroll が false になったとき、0.5s で debounce してボタンを表示
   useEffect(() => {
