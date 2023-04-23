@@ -79,7 +79,7 @@ export const CommentCard = ({ roomId }: Props) => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(collection(firestore, 'rooms', roomId, 'comments'), orderBy('createdAt', 'asc')),
+      query(collection(firestore, 'roomsv2', roomId, 'comments'), orderBy('createdAt', 'asc')),
       (querySnapshot) => {
         const newComments = querySnapshot
           .docChanges()

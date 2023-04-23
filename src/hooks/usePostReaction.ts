@@ -8,7 +8,7 @@ export const usePostReaction = (roomId: string, user?: User | null) => {
   const anonUserName = useRecoilValue(anonUserNameState);
 
   const postReaction = (emoji: string) => {
-    addDoc(collection(firestore, 'rooms', roomId, 'reactions'), {
+    addDoc(collection(firestore, 'roomsv2', roomId, 'reactions'), {
       content: emoji,
       author: {
         id: user?.uid ?? null,

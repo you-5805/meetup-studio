@@ -51,8 +51,8 @@ export const Studio = ({ room }: Props) => {
     <>
       <ReactionField roomId={room.id} />
 
-      <div className='relative grid h-[calc(100vh-56px)] grid-cols-3 gap-3 bg-gray-100 p-2 lg:grid-cols-4 xl:grid-cols-5'>
-        <div className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center lg:col-span-3 xl:col-span-4'>
+      <div className='relative grid h-[calc(100vh-56px)] grid-cols-3 gap-3 bg-gray-100 p-2 lg:grid-cols-4 xl:grid-cols-7'>
+        <div className='col-span-2 mx-auto aspect-video max-h-[calc(100vh-80px)] self-center lg:col-span-3 xl:col-span-6'>
           <video
             ref={videoRef}
             autoPlay

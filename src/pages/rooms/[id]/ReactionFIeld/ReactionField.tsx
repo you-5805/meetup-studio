@@ -19,7 +19,7 @@ export const ReactionField = ({ roomId }: Props) => {
   >([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(firestore, 'rooms', roomId, 'reactions'), (querySnapshot) => {
+    const unsubscribe = onSnapshot(collection(firestore, 'roomsv2', roomId, 'reactions'), (querySnapshot) => {
       if (!initialized.current) {
         initialized.current = true;
         return;

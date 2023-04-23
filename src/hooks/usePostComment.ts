@@ -26,7 +26,7 @@ export const usePostComment = ({ roomId, user }: Args) => {
 
     setIsPosting(true);
     try {
-      await addDoc(collection(firestore, 'rooms', roomId, 'comments'), {
+      await addDoc(collection(firestore, 'roomsv2', roomId, 'comments'), {
         content: comment,
         author: {
           id: user?.uid ?? null,
