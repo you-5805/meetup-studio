@@ -102,13 +102,7 @@ export const CommentCard = ({ roomId }: Props) => {
       >
         {comments.length === 0 ? (
           <div className='flex h-full flex-col items-center justify-center gap-4 text-center leading-loose'>
-            <p className='mb-6 block'>ここにコメントが表示されます。</p>
-            <div>
-              <p className='block'>QRコードからイベントページを開いて、</p>
-              <p className='block'>
-                最初のコメントをしましょう<span className='text-xl'>🥳</span>
-              </p>
-            </div>
+            <p>コメント</p>
           </div>
         ) : (
           comments.map(({ id, author, content, createdAt }) => (

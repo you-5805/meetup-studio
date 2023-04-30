@@ -2,23 +2,15 @@ import { CopyLinkButton } from '../CopyLinkButton/CopyLinkButton';
 import { QrImage } from '../QrImage/QrImage';
 import { CommentCard } from '../CommentCard/CommentCard';
 import { ReactionField } from '../ReactionFIeld/ReactionField';
-import { isSettingModalOpenedState } from '../state';
 import { Tooltip } from '@/components/Tooltip/Tooltip';
 import { useDisplayScreen } from '@/hooks/useDisplayScreen';
 import { cn } from '@/lib/cn';
 import { pagesPath } from '@/lib/$path';
 import logo from 'public/img/logo.png';
-import {
-  NoSymbolIcon,
-  TvIcon,
-  Cog6ToothIcon,
-  ArrowsPointingOutIcon,
-  ArrowsPointingInIcon,
-} from '@heroicons/react/24/outline';
+import { NoSymbolIcon, TvIcon, ArrowsPointingOutIcon, ArrowsPointingInIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRecoilCallback } from 'recoil';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
   room: {
@@ -31,21 +23,24 @@ export const Studio = ({ room }: Props) => {
   const { videoRef, isDisplaying, startDisplaying, stopDisplaying } = useDisplayScreen();
 
   const [isFullScreen, setIsFullScreen] = useState(false);
+
   const getIntoFullScreen = () => {
-    setIsFullScreen(true);
     document.body.requestFullscreen();
   };
   const exitFullScreen = () => {
-    setIsFullScreen(false);
     document.exitFullscreen();
   };
 
-  const openSettingModal = useRecoilCallback(
-    ({ set }) =>
-      () =>
-        set(isSettingModalOpenedState, true),
-    []
-  );
+  useEffect(() => {
+    const handleFullScreenChange = () => {
+      setIsFullScreen(document.fullscreenElement !== null);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullScreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullScreenChange);
+    };
+  }, [setIsFullScreen]);
 
   return (
     <>
@@ -94,12 +89,6 @@ export const Studio = ({ room }: Props) => {
           )}
 
           <CopyLinkButton />
-
-          <Tooltip label='設定'>
-            <button type='button' aria-label='設定モーダルを開く' onClick={openSettingModal}>
-              <Cog6ToothIcon color='white' className='h-8 w-8 hover:opacity-80' />
-            </button>
-          </Tooltip>
 
           <Tooltip label='全画面表示'>
             {isFullScreen ? (
