@@ -33,7 +33,7 @@ export default function Page() {
 
   return (
     <Layout>
-      <div className='px8 flex flex-col gap-8 py-10 md:py-20'>
+      <div className='flex flex-col gap-8 px-8 py-10 md:py-20'>
         <section className='mx-auto flex max-w-6xl flex-col items-center gap-8'>
           <div className='mx-auto grid grid-cols-1 gap-10 xl:grid-cols-2'>
             <h1 className='col-span-1 flex flex-col items-center justify-center text-2xl font-bold leading-normal tracking-tight md:text-4xl'>
