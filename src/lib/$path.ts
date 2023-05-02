@@ -18,9 +18,6 @@ export const pagesPath = {
   },
   "rooms": {
     _id: (id: string | number) => ({
-      "invitation": {
-        $url: (url?: { hash?: string }) => ({ pathname: '/rooms/[id]/invitation' as const, query: { id }, hash: url?.hash })
-      },
       $url: (url?: { hash?: string }) => ({ pathname: '/rooms/[id]' as const, query: { id }, hash: url?.hash })
     })
   },
