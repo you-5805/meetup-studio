@@ -1,4 +1,4 @@
-import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import { LoadingScreen } from '../LoadingScreen';
 import { pagesPath } from '@/lib/$path';
 import logo from 'public/img/logo.png';
 import { isScreenLoadingState } from '@/states/global';

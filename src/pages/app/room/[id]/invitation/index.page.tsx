@@ -4,7 +4,7 @@ import { SignInModal } from '@/pages/SignInModal/SignInModal';
 import { Button } from '@/components/Button/Button';
 import { isSignInModalOpenedState } from '@/states/global';
 import { useRoom } from '@/hooks/useRoom';
-import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { useUser } from '@/hooks/useUser';
 import { useRecoilCallback } from 'recoil';
 import { useRouter } from 'next/router';

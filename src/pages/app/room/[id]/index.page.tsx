@@ -4,7 +4,7 @@ import { SettingModal } from './SettingModal/SettingModal';
 import { Seo } from './seo';
 import { FeedbackPanel } from './FeedbackPanel/FeedbackPanel';
 import { useUser } from '@/hooks/useUser';
-import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import type { PageProps } from './index.server';
 
 export { getServerSideProps };

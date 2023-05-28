@@ -2,7 +2,7 @@ import { getServerSideProps } from './index.server';
 import { Seo } from './seo';
 import { Studio } from './Studio/Studio';
 import { FeedbackPanel } from './FeedbackPanel/FeedbackPanel';
-import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
+import { LoadingScreen } from '@/components/LoadingScreen';
 import { useUser } from '@/hooks/useUser';
 import { useEffect, useState } from 'react';
 import type { PageProps } from './index.server';

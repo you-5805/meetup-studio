@@ -1,4 +1,12 @@
 export const pagesPath = {
+  "new": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/new' as const, hash: url?.hash })
+  },
+  "studio": {
+    _id: (id: string | number) => ({
+      $url: (url?: { hash?: string }) => ({ pathname: '/studio/[id]' as const, query: { id }, hash: url?.hash })
+    })
+  },
   "$404": {
     $url: (url?: { hash?: string }) => ({ pathname: '/404' as const, hash: url?.hash })
   },
@@ -30,7 +38,6 @@ export const pagesPath = {
 export type PagesPath = typeof pagesPath
 
 export const staticPath = {
-  _DS_Store: '/.DS_Store',
   _gitkeep: '/.gitkeep',
   favicon_ico: '/favicon.ico',
   img: {

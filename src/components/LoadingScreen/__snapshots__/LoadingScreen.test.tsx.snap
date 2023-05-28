@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LoadingScreen > renders unchanged 1`] = `
+<DocumentFragment>
+  <div
+    class="fixed inset-0 flex flex-col items-center justify-center gap-8"
+  >
+    <div
+      class="h-16 w-16 animate-spin-slow rounded-xl bg-orange-300"
+    />
+    <p
+      class="text-2xl text-orange-400"
+    >
+      loading...
+    </p>
+  </div>
+</DocumentFragment>
+`;
