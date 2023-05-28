@@ -1,5 +1,4 @@
-import { FIREBASE_PROJECT_ID } from '@/config/env';
-import { FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY } from '@/config/serverEnv';
+import { env } from '@/config/env';
 import admin from 'firebase-admin';
 import { getApp, getApps } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
@@ -9,9 +8,9 @@ const app = getApps().length
   ? getApp()
   : admin.initializeApp({
       credential: admin.credential.cert({
-        projectId: FIREBASE_PROJECT_ID,
-        clientEmail: FIREBASE_CLIENT_EMAIL,
-        privateKey: FIREBASE_PRIVATE_KEY,
+        projectId: env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        clientEmail: env.FIREBASE_CLIENT_EMAIL,
+        privateKey: env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
       }),
     });
 
