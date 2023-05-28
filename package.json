@@ -11,6 +11,7 @@
     "lint": "eslint --fix src/**/*.{ts,tsx}",
     "format": "prettier --write src",
     "test": "vitest run",
+    "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "sb": "storybook dev -p 6006",
     "sb:build": "storybook build"

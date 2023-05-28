@@ -1,7 +1,7 @@
 import { getServerSideProps } from './index.server';
 import { Layout } from '@/components/Layout/Layout';
 import { SignInModal } from '@/pages/SignInModal/SignInModal';
-import { Button } from '@/components/Button/Button';
+import { Button } from '@/components/Button';
 import { isSignInModalOpenedState } from '@/states/global';
 import { useRoom } from '@/hooks/useRoom';
 import { LoadingScreen } from '@/components/LoadingScreen';

@@ -10,6 +10,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    appDir: false,
+  },
 };
 
 module.exports = withInterceptStdout(nextConfig, (text) => (text.includes('Duplicate atom key') ? '' : text));

@@ -1,5 +1,5 @@
 import { firestore } from '@/lib/firebase';
-import { Button } from '@/components/Button/Button';
+import { Button } from '@/components/Button';
 import { doc, setDoc } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import { useRouter } from 'next/router';

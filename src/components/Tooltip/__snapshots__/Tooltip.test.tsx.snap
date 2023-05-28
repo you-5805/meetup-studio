@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tooltip > renders unchanged 1`] = `
+<DocumentFragment>
+  <button
+    class="rounded-lg bg-orange-500 p-2 text-white"
+    data-state="closed"
+    type="button"
+  >
+    Trigger
+  </button>
+</DocumentFragment>
+`;
